@@ -5,8 +5,7 @@
       "name": "registry-dev",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
-      "port": 3000,
-      "cwd": "C:\\Users\\ahmed.afrah\\maldives-island-registry"
+      "port": 3000
     }
   ]
 }

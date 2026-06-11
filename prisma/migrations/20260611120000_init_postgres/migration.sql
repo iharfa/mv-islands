@@ -1,6 +1,9 @@
+-- CreateSchema
+CREATE SCHEMA IF NOT EXISTS "public";
+
 -- CreateTable
 CREATE TABLE "Source" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "slug" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "organization" TEXT NOT NULL,
@@ -15,60 +18,66 @@ CREATE TABLE "Source" (
     "contact" TEXT,
     "priority" INTEGER NOT NULL DEFAULT 100,
     "category" TEXT NOT NULL,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Source_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "SourceDocument" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "sourceId" TEXT NOT NULL,
     "url" TEXT NOT NULL,
     "title" TEXT,
     "docType" TEXT NOT NULL,
     "rawPath" TEXT,
     "contentHash" TEXT,
-    "fetchedAt" DATETIME NOT NULL,
-    "publishedAt" DATETIME,
+    "fetchedAt" TIMESTAMP(3) NOT NULL,
+    "publishedAt" TIMESTAMP(3),
     "httpStatus" INTEGER,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT "SourceDocument_sourceId_fkey" FOREIGN KEY ("sourceId") REFERENCES "Source" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "SourceDocument_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "ScrapeRun" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "sourceId" TEXT NOT NULL,
-    "startedAt" DATETIME NOT NULL,
-    "finishedAt" DATETIME,
+    "startedAt" TIMESTAMP(3) NOT NULL,
+    "finishedAt" TIMESTAMP(3),
     "status" TEXT NOT NULL,
     "recordsFound" INTEGER NOT NULL DEFAULT 0,
     "pagesFetched" INTEGER NOT NULL DEFAULT 0,
     "failures" INTEGER NOT NULL DEFAULT 0,
     "failedUrls" TEXT,
     "log" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT "ScrapeRun_sourceId_fkey" FOREIGN KEY ("sourceId") REFERENCES "Source" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "ScrapeRun_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Atoll" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "code" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "dhivehiName" TEXT,
     "naturalAtoll" TEXT,
     "region" TEXT,
-    "centroidLat" REAL,
-    "centroidLng" REAL,
+    "centroidLat" DOUBLE PRECISION,
+    "centroidLng" DOUBLE PRECISION,
     "geometry" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Atoll_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Island" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "slug" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "dhivehiName" TEXT,
@@ -76,9 +85,9 @@ CREATE TABLE "Island" (
     "status" TEXT,
     "islandType" TEXT,
     "useCategory" TEXT,
-    "lat" REAL,
-    "lng" REAL,
-    "areaSqKm" REAL,
+    "lat" DOUBLE PRECISION,
+    "lng" DOUBLE PRECISION,
+    "areaSqKm" DOUBLE PRECISION,
     "identityScore" INTEGER NOT NULL DEFAULT 0,
     "geometryScore" INTEGER NOT NULL DEFAULT 0,
     "populationScore" INTEGER NOT NULL DEFAULT 0,
@@ -87,37 +96,40 @@ CREATE TABLE "Island" (
     "sourceScore" INTEGER NOT NULL DEFAULT 0,
     "overallScore" INTEGER NOT NULL DEFAULT 0,
     "unresolvedConflicts" INTEGER NOT NULL DEFAULT 0,
-    "lastUpdatedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL,
-    CONSTRAINT "Island_atollId_fkey" FOREIGN KEY ("atollId") REFERENCES "Atoll" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+    "lastUpdatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Island_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "IslandName" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "islandId" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "nameType" TEXT NOT NULL,
     "sourceSlug" TEXT,
-    CONSTRAINT "IslandName_islandId_fkey" FOREIGN KEY ("islandId") REFERENCES "Island" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+
+    CONSTRAINT "IslandName_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "IslandGeometry" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "islandId" TEXT NOT NULL,
     "sourceSlug" TEXT NOT NULL,
     "geomType" TEXT NOT NULL,
     "geometry" TEXT NOT NULL,
-    "areaSqKm" REAL,
-    "fetchedAt" DATETIME NOT NULL,
-    CONSTRAINT "IslandGeometry_islandId_fkey" FOREIGN KEY ("islandId") REFERENCES "Island" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    "areaSqKm" DOUBLE PRECISION,
+    "fetchedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "IslandGeometry_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "IslandPopulation" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "islandId" TEXT NOT NULL,
     "sourceSlug" TEXT NOT NULL,
     "censusYear" INTEGER,
@@ -128,24 +140,26 @@ CREATE TABLE "IslandPopulation" (
     "registered" INTEGER,
     "households" INTEGER,
     "rawRecord" TEXT,
-    "fetchedAt" DATETIME NOT NULL,
-    CONSTRAINT "IslandPopulation_islandId_fkey" FOREIGN KEY ("islandId") REFERENCES "Island" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    "fetchedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "IslandPopulation_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "IslandImage" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "islandId" TEXT NOT NULL,
     "url" TEXT NOT NULL,
     "localPath" TEXT,
     "caption" TEXT,
     "sourceSlug" TEXT NOT NULL,
-    CONSTRAINT "IslandImage_islandId_fkey" FOREIGN KEY ("islandId") REFERENCES "Island" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+
+    CONSTRAINT "IslandImage_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "FieldValue" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "entityType" TEXT NOT NULL,
     "entityId" TEXT NOT NULL,
     "fieldName" TEXT NOT NULL,
@@ -157,23 +171,23 @@ CREATE TABLE "FieldValue" (
     "isCanonical" BOOLEAN NOT NULL DEFAULT false,
     "canonicalReason" TEXT,
     "selectedBy" TEXT,
-    "dateSelected" DATETIME,
-    "confidenceScore" REAL NOT NULL DEFAULT 0.5,
+    "dateSelected" TIMESTAMP(3),
+    "confidenceScore" DOUBLE PRECISION NOT NULL DEFAULT 0.5,
     "verificationStatus" TEXT NOT NULL DEFAULT 'unverified',
-    "dateScraped" DATETIME NOT NULL,
-    "datePublished" DATETIME,
-    "dateVerified" DATETIME,
+    "dateScraped" TIMESTAMP(3) NOT NULL,
+    "datePublished" TIMESTAMP(3),
+    "dateVerified" TIMESTAMP(3),
     "sourceUrl" TEXT NOT NULL,
     "notes" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL,
-    CONSTRAINT "FieldValue_sourceId_fkey" FOREIGN KEY ("sourceId") REFERENCES "Source" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT "FieldValue_sourceDocumentId_fkey" FOREIGN KEY ("sourceDocumentId") REFERENCES "SourceDocument" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "FieldValue_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "DataConflict" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "islandId" TEXT,
     "entityType" TEXT NOT NULL DEFAULT 'island',
     "entityId" TEXT,
@@ -183,34 +197,36 @@ CREATE TABLE "DataConflict" (
     "status" TEXT NOT NULL DEFAULT 'unresolved',
     "canonicalValue" TEXT,
     "sourceValues" TEXT NOT NULL,
-    "confidenceScore" REAL NOT NULL DEFAULT 0.5,
+    "confidenceScore" DOUBLE PRECISION NOT NULL DEFAULT 0.5,
     "reviewerNote" TEXT,
     "reviewedBy" TEXT,
-    "detectedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "reviewedAt" DATETIME,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL,
-    CONSTRAINT "DataConflict_islandId_fkey" FOREIGN KEY ("islandId") REFERENCES "Island" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+    "detectedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "reviewedAt" TIMESTAMP(3),
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "DataConflict_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "IslandMatch" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "islandId" TEXT NOT NULL,
     "sourceSlug" TEXT NOT NULL,
     "sourceRecordKey" TEXT NOT NULL,
     "matchMethod" TEXT NOT NULL,
-    "confidence" REAL NOT NULL,
+    "confidence" DOUBLE PRECISION NOT NULL,
     "needsReview" BOOLEAN NOT NULL DEFAULT false,
     "reviewedBy" TEXT,
-    "reviewedAt" DATETIME,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT "IslandMatch_islandId_fkey" FOREIGN KEY ("islandId") REFERENCES "Island" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    "reviewedAt" TIMESTAMP(3),
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "IslandMatch_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "AdminCorrection" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "entityType" TEXT NOT NULL,
     "entityId" TEXT NOT NULL,
     "fieldName" TEXT NOT NULL,
@@ -220,26 +236,30 @@ CREATE TABLE "AdminCorrection" (
     "submittedBy" TEXT NOT NULL,
     "status" TEXT NOT NULL DEFAULT 'pending',
     "reviewedBy" TEXT,
-    "reviewedAt" DATETIME,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "reviewedAt" TIMESTAMP(3),
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "AdminCorrection_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "AuditLog" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "actor" TEXT NOT NULL,
     "action" TEXT NOT NULL,
     "entityType" TEXT,
     "entityId" TEXT,
     "detail" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "AuditLog_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Snapshot" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "snapshotDate" TEXT NOT NULL,
-    "generatedAt" DATETIME NOT NULL,
+    "generatedAt" TIMESTAMP(3) NOT NULL,
     "gitCommitHash" TEXT,
     "appVersion" TEXT,
     "schemaVersion" TEXT,
@@ -248,18 +268,21 @@ CREATE TABLE "Snapshot" (
     "totalPopulation" INTEGER NOT NULL DEFAULT 0,
     "totalConflicts" INTEGER NOT NULL DEFAULT 0,
     "manifest" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Snapshot_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "SnapshotFile" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+    "id" TEXT NOT NULL,
     "snapshotId" TEXT NOT NULL,
     "path" TEXT NOT NULL,
     "label" TEXT NOT NULL,
     "sizeBytes" INTEGER NOT NULL,
     "checksum" TEXT NOT NULL,
-    CONSTRAINT "SnapshotFile_snapshotId_fkey" FOREIGN KEY ("snapshotId") REFERENCES "Snapshot" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+
+    CONSTRAINT "SnapshotFile_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -330,3 +353,40 @@ CREATE UNIQUE INDEX "Snapshot_snapshotDate_key" ON "Snapshot"("snapshotDate");
 
 -- CreateIndex
 CREATE INDEX "SnapshotFile_snapshotId_idx" ON "SnapshotFile"("snapshotId");
+
+-- AddForeignKey
+ALTER TABLE "SourceDocument" ADD CONSTRAINT "SourceDocument_sourceId_fkey" FOREIGN KEY ("sourceId") REFERENCES "Source"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ScrapeRun" ADD CONSTRAINT "ScrapeRun_sourceId_fkey" FOREIGN KEY ("sourceId") REFERENCES "Source"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Island" ADD CONSTRAINT "Island_atollId_fkey" FOREIGN KEY ("atollId") REFERENCES "Atoll"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "IslandName" ADD CONSTRAINT "IslandName_islandId_fkey" FOREIGN KEY ("islandId") REFERENCES "Island"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "IslandGeometry" ADD CONSTRAINT "IslandGeometry_islandId_fkey" FOREIGN KEY ("islandId") REFERENCES "Island"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "IslandPopulation" ADD CONSTRAINT "IslandPopulation_islandId_fkey" FOREIGN KEY ("islandId") REFERENCES "Island"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "IslandImage" ADD CONSTRAINT "IslandImage_islandId_fkey" FOREIGN KEY ("islandId") REFERENCES "Island"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "FieldValue" ADD CONSTRAINT "FieldValue_sourceId_fkey" FOREIGN KEY ("sourceId") REFERENCES "Source"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "FieldValue" ADD CONSTRAINT "FieldValue_sourceDocumentId_fkey" FOREIGN KEY ("sourceDocumentId") REFERENCES "SourceDocument"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "DataConflict" ADD CONSTRAINT "DataConflict_islandId_fkey" FOREIGN KEY ("islandId") REFERENCES "Island"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "IslandMatch" ADD CONSTRAINT "IslandMatch_islandId_fkey" FOREIGN KEY ("islandId") REFERENCES "Island"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "SnapshotFile" ADD CONSTRAINT "SnapshotFile_snapshotId_fkey" FOREIGN KEY ("snapshotId") REFERENCES "Snapshot"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
