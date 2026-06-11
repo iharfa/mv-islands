@@ -1,0 +1,656 @@
+<link rel="stylesheet" type="text/css" href="/css/jquery-ui-1.10.3.custom.min.css" /><link rel="stylesheet" type="text/css" href="/css/jquery-selectbox.css" /><link rel="stylesheet" type="text/css" href="/css/responsive-grid.css" /><link rel="stylesheet" type="text/css" href="/css/styles.css" /><link rel="stylesheet" type="text/css" href="/css/responsive.css" /><link rel="stylesheet" type="text/css" href="/css/colorbox.css" /><link rel="stylesheet" type="text/css" href="/css/zozo.examples.min.css" /><link rel="stylesheet" type="text/css" href="/css/zozo.tabs.min.css" /><link rel="stylesheet" type="text/css" href="/css/sprite.css" /><link rel="stylesheet" type="text/css" href="/css/typography.css" /><link rel="stylesheet" type="text/css" href="/css/gallery.css" /><script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script><script type="text/javascript" src="/js/jquery.colorbox-min.js"></script><script type="text/javascript" src="/js/jquery.easing.min.js"></script><script type="text/javascript" src="/js/zozo.tabs.min.js"></script> <script type="text/javascript" src="/js/plugins/forms/jquery.uniform.min.js"></script> <script type="text/javascript" src="/js/plugins/ui/jquery.fancybox.js"></script> <style>table th{ text-align:left!important}</style>
+<script>
+$.noConflict();
+		jQuery(document).ready(function($){
+            /* jQuery activation and setting options for the tabs*/
+            var tabbedNav 			= $("#tabbed-nav").zozoTabs({
+										position			: "top-left",
+										autoContentHeight	: true,
+										size				: "xlarge",
+										theme				: "blue",
+										rounded				: true,
+										multiline			: true,
+										autoContentHeight	: true,
+										defaultTab			: "tab1"
+           							 });       
+			//tabbedNav.data('zozoTabs').refresh();
+
+			
+			$('.view').hover(function(){
+			    $(this).children(".view-back").fadeIn(200);
+			},function(){
+			    $(this).children(".view-back").fadeOut(200);
+			});
+        	$(".lightbox").fancybox({
+        		'padding': 2
+        	});
+			
+        });
+
+		
+    </script>
+<div class="content-wrapper">
+  <!-- <div class="container-12">
+    <div class="content-widgets blue-white">
+      <div class="widget-head ">
+        <h3>Grid 6</h3>
+      </div>
+      <div class="widget-container">
+        <h3>Heading</h3>
+        <p> Aenean nibh ante, lacinia non tincidunt nec, lobortis ut tellus. Sed in porta diam. </p>
+      </div>
+    </div>
+  </div>
+  <div class="container-12">
+    <div class="content-widgets blue-white">
+      <div class="widget-head ">
+        <h3>Grid 6</h3>
+      </div>
+      <div class="widget-container">
+        <h3>Heading</h3>
+        <p> Aenean nibh ante, lacinia non tincidunt nec, lobortis ut tellus. Sed in porta diam. </p>
+      </div>
+    </div>
+  </div>-->
+  <div class="zone-content equalize zone clearfix">
+    <div class="content-container">
+      <div class="companies-listings block">
+        <div class="block-title">
+          <h1>Boifushi (U) - [ Maalhosmadulu Dhekunuburi (Baa Atoll) ]</h1>
+        </div>
+        <div class="company-listing clearfix  container-24">
+          <div class="listing-text details">  </div>
+        </div>
+        <div class="container-24">
+          <div id="page">
+            <div id="animation">
+              <div id="tabbed-nav">
+                <ul>
+                  <li><a>General<span>Information</span></a></li>
+                  <li><a>Environmental <span>Aspects</span></a></li>
+                  <li><a>Commercial<span>Aspects</span></a></li>
+                  <li><a>Economic <span>and Administrative Aspects</span></a></li>
+                  <li><a>Other<span>Information</span></a></li>
+                                 <li><a>Gallery <span>Island</span></a></li>
+                </ul>
+                                                <div>
+                  <div class="form_container">
+                    <h3>General Information</h3>
+                    <fieldset>
+                    <fieldset class="container-15">
+                    <!--<legend>Property</legend>-->
+                    <table>
+                      <tr>
+                                                <td width="30%">DMS Latitude</td>
+                        <td>5&deg; 17' 51'' N </td>
+                                              </tr>
+                      <tr>
+                                                <td width="30%">DMS Longitude</td>
+                        <td >72&deg; 59' 37'' E </td>
+                                              </tr>
+                      <tr>
+                        <td>Area (ha)</td>
+                        <td>0.89 </td>
+                      </tr>
+                      <tr>
+                        <td>Length (m)</td>
+                        <td> </td>
+                      </tr>
+                      <tr>
+                        <td>Width (m)</td>
+                        <td> </td>
+                      </tr>
+                      <tr>
+                        <td>Island status</td>
+                        <td>Under Ministry of Agriculture and Animal Welfare </td>
+                      </tr>
+                       <tr>
+                        <td>Leased info</td>
+                        <td>Under Ministry of Agriculture and Animal Welfare (26-08-2024) </td>
+                      </tr>
+                      <tr>
+                        <td>Nearest to airport name</td>
+                        <td> </td>
+                      </tr>
+                      <tr>
+                        <td>Proximity to airport (km)</td>
+                        <td> </td>
+                      </tr>
+                      <tr>
+                        <td>Nearest sea plane landing area</td>
+                        <td> </td>
+                      </tr>
+                      <tr>
+                        <td>Proximity to sea plane landing area (km)</td>
+                        <td> </td>
+                      </tr>
+                      <tr>
+                        <td>Nearest inhabited island </td>
+                        <td> </td>
+                      </tr>
+                      <tr>
+                        <td>Proximity to inhabited island (km)</td>
+                        <td> </td>
+                      </tr>
+                      <tr>
+                        <td>Nearest uninhabited island </td>
+                        <td> </td>
+                      </tr>
+                      <tr>
+                        <td>Proximity to uninhabited island (km)</td>
+                        <td> </td>
+                      </tr>
+                      <tr>
+                        <td>Nearest lagoon</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td>Proximity to lagoon (km)</td>
+                        <td> </td>
+                      </tr>
+                      <tr>
+                        <td>Nearest resort</td>
+                        <td> </td>
+                      </tr>
+                      <tr>
+                        <td>Proximity to resort (km)</td>
+                        <td> </td>
+                      </tr>
+                                            <tr>
+                        <td>Bait Found</td>
+                        <td>Yes </td>
+                      </tr>
+                                                                  <tr>
+                        <td>Reef fish found</td>
+                        <td>Yes</td>
+                      </tr>
+                                            <tr>
+                        <td>Purpose</td>
+                        <td>None </td>
+                      </tr>
+                    </table>
+                    </fieldset>
+                    <fieldset class="container-9">
+                    <!--<legend>Behaviours</legend>-->
+                    <div class="table_content">
+                      <table  id="DataTables_Table_5" class="display tbl_details dataTable">
+                        <tr>
+                          <td>Jetty</td>
+                          <td align="center"><div class="tick-mark">&nbsp;</div> </td>
+                        </tr>
+                        <tr>
+                          <td>Weather condition</td>
+                          <td align="center"> </td>
+                        </tr>
+                        <tr>
+                          <td>Protected area</td>
+                          <td align="center"><div class="cross-mark">&nbsp;</div>                          </td>
+                        </tr>
+                        <tr>
+                          <td>Environmentally sensitive area</td>
+                          <td align="center"><div class="cross-mark">&nbsp;</div> </td>
+                        </tr>
+                        <tr>
+                          <td>Invasive species</td>
+                          <td align="center"><div class="cross-mark">&nbsp;</div> </td>
+                        </tr>
+                        <tr>
+                          <td>Mangroves</td>
+                          <td align="center"><div class="cross-mark">&nbsp;</div> </td>
+                        </tr>
+                        <tr>
+                          <td>Sea plane landing area</td>
+                          <td align="center"><div class="cross-mark">&nbsp;</div> </td>
+                        </tr> 
+                                                <tr>
+                          <td>Hospitals</td>
+                          <td align="center"><div class="cross-mark">&nbsp;</div> </td>
+                        </tr>
+                        <tr>
+                          <td>Ice plants</td>
+                          <td align="center"><div class="cross-mark">&nbsp;</div> </td>
+                        </tr>
+                        <tr>
+                          <td>Fish processing plants</td>
+                          <td align="center"><div class="cross-mark">&nbsp;</div> </td>
+                        </tr>
+                        <tr>
+                          <td>Agricultural islands</td>
+                          <td align="center"><div class="cross-mark">&nbsp;</div> </td>
+                        </tr>
+                        <tr>
+                          <td>Regional ports</td>
+                          <td align="center"><div class="cross-mark">&nbsp;</div> </td>
+                        </tr>
+                        <tr>
+                          <td>Historical islands</td>
+                          <td align="center"><div class="cross-mark">&nbsp;</div> </td>
+                        </tr>
+                        <tr>
+                          <td>Schools</td>
+                          <td align="center"><div class="cross-mark">&nbsp;</div> </td>
+                        </tr>
+                        <tr>
+                          <td>Banks</td>
+                          <td align="center"><div class="cross-mark">&nbsp;</div> </td>
+                        </tr>
+                        <tr>
+                          <td>Airports</td>
+                          <td align="center"><div class="cross-mark">&nbsp;</div> </td>
+                        </tr>
+                        <tr>
+                          <td>Picnic islands</td>
+                          <td align="center"><div class="cross-mark">&nbsp;</div> </td>
+                        </tr>
+                        <tr>
+                          <td>Marine protected areas</td>
+                          <td align="center"><div class="cross-mark">&nbsp;</div> </td>
+                        </tr>
+                        <tr>
+                          <td>Biosphere reserve</td>
+                          <td align="center"><div class="cross-mark">&nbsp;</div> </td>
+                        </tr>
+                      </table>
+                    </div>
+                    </fieldset>
+                    <fieldset class="container-24">
+                    <legend>Images</legend>
+                    <table>
+                    <tr><td><div>
+                        <h4>Map Image</h4>
+                      </div></td><td> <div>
+                        <h4>Satellite Image</h4>
+                      </div></td></tr>
+                    <tr>
+                   
+                    <td width="50%"><div class="content-widgets  container-12">
+                                         </div></td>
+                   
+                    <td><div class="content-widgets container-12">
+                                        </div>
+                   </td>
+                    
+                    </tr>
+                    </table>
+                   
+                    </fieldset>
+                    </fieldset>
+                  </div>
+                  <div>
+                    <h3>Soil Details</h3>
+                   
+                    <table>
+                      <tr>
+                        <td style="width:40%">Height at sea leavel</td>
+                        <td> </td>
+                      </tr>
+                      <tr>
+                        <td>Height between soil water lens</td>
+                        <td> </td>
+                      </tr>
+                      <tr>
+                        <td>Quality of water lens</td>
+                        <td> </td>
+                      </tr>
+                      <tr>
+                        <td>Soil pH</td>
+                        <td> </td>
+                      </tr>
+                      <tr>
+                        <td>Top soil depth</td>
+                        <td> </td>
+                      </tr>
+                      <tr>
+                        <td>Soil Quality</td>
+                        <td> </td>
+                      </tr>
+                      <tr>
+                        <td>Soil content - Sand (%)</td>
+                        <td> </td>
+                      </tr>
+                      <tr>
+                        <td>Soil content - Clay (%)</td>
+                        <td> </td>
+                      </tr>
+                      <tr>
+                        <td>Soil content - Silt (%)</td>
+                        <td> </td>
+                      </tr>
+                    </table>
+                    <br/>
+                   
+                    <h3>Land - Natural Vegetation</h3>
+                    <h4>Coconut Groves Details</h4>
+                    <table>
+                      <tr>
+                        <th>Variety Name</th>
+                        <th>Area (sq.ft)</th>
+                        <th>Qualitative</th>
+                        <th>Age</th>
+                      </tr>
+                                          </table>
+                    <br/>
+                    <h4>Other Vegetation</h4>  
+                    <table>
+                      <tr>
+                        <th>Species</th>
+                        <th>Area (sq.ft)</th>
+                        <th>Qualitative</th>
+                      </tr>
+                                          </table>
+                    <br/>
+                    <h4>Non-Vegetative Area</h4>
+                    <table>
+                      <tr>
+                        <th>Name</th>
+                        <th>Area (sq.ft)</th>
+                        <th>Species</th>
+                      </tr>
+                                          </table>
+                    <br/>
+                    <h3>Wet Lands</h3>
+                    <h4>Mangrove</h4>
+                    <table>
+                      <tr>
+                        <th>Name</th>
+                        <th>Area (sq.ft)</th>
+                        <th>Fauna</th>
+                        <th>Flora</th>
+                        <th>Qualitative</th>
+                      </tr>
+                                          </table>
+                    <br/>
+                    <h4>Swamps</h4>
+                    <table>
+                      <tr>
+                        <th>Name</th>
+                        <th>Area (sq.ft)</th>
+                        <th>Fauna</th>
+                        <th>Flora</th>
+                        <th>Qualitative</th>
+                      </tr>
+                                          </table>
+                    <br/>
+                    <h3>Costal/Beach Area</h3>
+                    <h4>Eroding</h4>
+                   
+                    <table>
+                      <tr>
+                        <th>Monsoon</th>
+                        <th>Side</th>
+                        <!--<th>Distance</th>-->
+                        <th>High tide (m)</th>
+                        <th>Mid tide (m)</th>
+                        <th>Low tide (m)</th>
+                        <th>Lagoon side</th>
+                      </tr>
+                                          </table>
+                    <br/>
+                    <h4>Sandspit</h4>
+                    <table>
+                      <tr>
+                        <th>Side</th>
+                        <th>Area (sq.ft)</th>
+                      </tr>
+                                          </table>
+                    <br/>
+                    <h4>Accreting Beach</h4>
+                    <h5>Season - South East</h5>
+                     
+                    <table>
+                      <tr>
+                           <th>Eroding side</th>
+                        <th>Accreting side</th>
+                        <th>Area (sq.ft)</th>
+                      </tr>
+                                          </table>
+                    <h5>Season - North West</h5>
+                    <table>
+                      <tr>
+                        <th>Eroding side</th>
+                        <th>Accreting side</th>
+                        <th>Area (sq.ft)</th>
+                      </tr>
+                                          </table>
+                    <br/>
+                    <h3>Vegetation</h3>
+                    <h4>Vegetation At Beach Area</h4>
+                                        <table>
+                      <tr>
+                        <th>Name</th>
+                        <th>Percentage (%)</th>
+                      </tr>
+                                          </table>
+                    <br/>
+                    <h4>Vegetation In Land</h4>
+                    <table>
+                      <tr>
+                        <th>Name</th>
+                        <th>Percentage (%)</th>
+                      </tr>
+                                          </table>
+                    <br/>
+                    <h3>Aquatic </h3>
+                    <h4>Aquatic Details</h4>
+                    <table>
+                      <tr>
+                        <th>Natural lagoon or not</th>
+                        <th>Size (ha)</th>
+                        <th>Natural entry to the island</th>
+                        <th>Lagoon depth (m)</th>
+                      </tr>
+                                          </table>
+                  </div>
+                  <div>
+                    <h3>Field Area</h3>
+                    <table>
+                      <tr>
+                        <th>No of field area</th>
+                        <th>Crop cultivated</th>
+                        <th>Area (sq.ft)</th>
+                      </tr>
+                                          </table>
+                    <br/>
+                    <h3>Animal Husbandry</h3>
+                    <table>
+                      <tr>
+                        <th>Animal name</th>
+                        <th>No of livestock</th>
+                        <th>Area (sq.ft)</th>
+                      </tr>
+                                          </table>
+                    <br/>
+                    <h3>Processing</h3>
+                    <table>
+                      <tr>
+                        <th>Product name</th>
+                        <th>Process method</th>
+                        <th>Area (sq.ft)</th>
+                        <th>Scale of production</th>
+                      </tr>
+                                          </table>
+                  </div>
+                  <div>
+                    <h3>Protected & Sensitive</h3>
+                    <h4>Fully Protected</h4>
+                    <table>
+                      <tr>
+                        <th>Location</th>
+                        <th>Name of the site</th>
+                        <th>Size (sq ft)</th>
+                        <th>Purpose of protection</th>
+                        <th>Fauna </th>
+                        <th>Flora</th>
+                      </tr>
+                                          </table>
+                    <br/>
+                    <h4>Partially Protected</h4>
+                    <table>
+                      <tr>
+                        <th>Location</th>
+                        <th>Name of the site</th>
+                        <th>Size (sq ft)</th>
+                        <th>Purpose of protection</th>
+                       <th>Fauna </th>
+                        <th>Flora</th>
+                      </tr>
+                                          </table>
+                    <br/>
+                    <h4>Marine</h4>
+                    <table>
+                      <tr>
+                        <th>Location</th>
+                        <th>Name of the site</th>
+                        <th>Size (sq ft)</th>
+                        <th>Fauna </th>
+                        <th>Flora</th>
+                        
+                      </tr>
+                                          </table>
+                    <br/>
+                    <h4>Biosphere Reserves</h4>
+                    <table>
+                      <tr>
+                        <th>Location</th>
+                        <th>Name of the site</th>
+                        <th>Land area covered</th>
+                        <th>Sea area covered</th>
+                        <th>Purpose of conservation</th>
+                         <th>Fauna </th>
+                        <th>Flora</th>
+                      </tr>
+                                          </table>
+                    <br/>
+                    <h4>Tree</h4>
+                     
+                    <table>
+                      <tr>
+                        <th>Location</th>
+                        <th>Name of the site</th>
+                        <th>Estimated age</th>
+                        <th>Reason for protection</th>
+                      </tr>
+                                          </table>
+                    <br/>
+                    <h4>Historical Place</h4>
+                    <table>
+                      <tr>
+                        <th>Location</th>
+                        <th>Name of the site</th>
+                        <th>Size (sq ft)</th>
+                        <th>Reason for protection</th>
+                         
+                      </tr>
+                                          </table>
+                    <br/>
+                    <h4>Mangrove</h4>
+                   
+                    <table>
+                      <tr>
+                        <th>Location</th>
+                        <th>Name of the site</th>
+                        <th>Size (sq ft)</th>
+                        <th>Reason for protection</th>
+                        <th>Fauna </th>
+                        <th> Flora</th>
+                      </tr>
+                                          </table>
+                    <br/>
+                    <h3>Historical Data</h3>
+                    <h4>Historical Data</h4>
+                    <table>
+                      <tr>
+                        <th>Visual clue of historical data</th>
+                        <th>Evidence</th>
+                        <th>Prior usage of the island</th>
+                        
+                      </tr>
+                                          </table>
+                    <br/>
+                    <h4>Old Historical Tree</h4>
+                    <table>
+                      <tr>
+                        <th>Name</th>
+                        <th>Where it is</th>
+                        <th>Age</th>
+                      </tr>
+                                          </table>
+                    <br/>
+                    <h3>Infrastructure</h3>
+                     
+                    <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Quantity/ Capacity</th>
+                      </tr>
+                                         </table>
+                  </div>
+                  <div>
+                    <h3>Invasive Species</h3>
+                                       <h4>Vegetative</h4>
+                                        <table>
+                      <tr>
+                        <th>Name</th>
+                        <th>Percentage</th>
+                      </tr>
+                                          </table>
+                    <br/>
+                    <h4>Insect</h4>
+                    <table>
+                      <tr>
+                        <th>Name</th>
+                        <th>Percentage</th>
+                        <th>Reports</th>
+                      </tr>
+                                          </table>
+                    <br/>
+                    <h3>Local birds in the island</h3>
+                    <table>
+                      <tr>
+                        <th>Scientific Name</th>
+                      </tr>
+                                          </table>
+                    <br/>
+                    <h3>Migratory Birds</h3>
+                    <table>
+                      <tr>
+                        <th>Bird Name</th>
+                        <th>Season</th>
+                      </tr>
+                                          </table>
+                    <br/>
+                    <h3>Other Feature</h3>
+                    <table>
+                      <tr>
+                        <th>Local Name</th>
+                        <th>Description</th>
+                      </tr>
+                                          </table>
+                  </div>
+                                    <div>
+                    <h3>Island Gallery</h3>
+                    <div class="media row-fluid">
+										</div>
+                    <table>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43759629-1', 'islandsofmaldives.gov.mv');
+  ga('send', 'pageview');
+
+</script>

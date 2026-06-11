@@ -6,21 +6,54 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "scrape:atolls": "tsx scripts/scrape/atolls.ts",
+    "scrape:onemap": "tsx scripts/scrape/onemap.ts",
+    "scrape:mbs": "tsx scripts/scrape/mbs.ts",
+    "scrape:statsmap": "tsx scripts/scrape/statsmap.ts",
+    "etl:normalize": "tsx scripts/etl/normalize.ts",
+    "etl:match-islands": "tsx scripts/etl/match-islands.ts",
+    "etl:detect-conflicts": "tsx scripts/etl/detect-conflicts.ts",
+    "db:seed": "tsx scripts/db/seed.ts",
+    "db:reset": "prisma migrate reset --force && tsx scripts/db/seed.ts",
+    "export:geojson": "tsx scripts/export/geojson.ts",
+    "export:csv": "tsx scripts/export/csv.ts",
+    "snapshot:create": "tsx scripts/snapshot/create.ts",
+    "snapshot:validate": "tsx scripts/snapshot/validate.ts",
+    "snapshot:export": "tsx scripts/snapshot/export.ts",
+    "snapshot:release": "tsx scripts/snapshot/release.ts",
+    "snapshot:restore": "tsx scripts/snapshot/restore.ts",
+    "test": "vitest run",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@prisma/client": "^6.19.3",
+    "adm-zip": "^0.5.17",
+    "better-sqlite3": "^12.10.0",
+    "cheerio": "^1.2.0",
+    "maplibre-gl": "^5.24.0",
     "next": "16.2.9",
+    "papaparse": "^5.5.3",
+    "prisma": "^6.19.3",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "recharts": "^3.8.1",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "@playwright/test": "^1.60.0",
     "@tailwindcss/postcss": "^4",
+    "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^20",
+    "@types/papaparse": "^5.5.2",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
+    "playwright": "^1.60.0",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "tsx": "^4.22.4",
+    "typescript": "^5",
+    "vitest": "^4.1.8"
   }
 }

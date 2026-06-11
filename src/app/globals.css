@@ -1,26 +1,146 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Atoll Geometric design system — see docs/design/atoll_geometric/DESIGN.md */
+  --color-ocean: #003366;
+  --color-ocean-deep: #001e40;
+  --color-ocean-light: #1f477b;
+  --color-reef: #00ced1;
+  --color-reef-dark: #00696b;
+  --color-island: #228b22;
+  --color-island-dark: #003d04;
+  --color-sand: #f5f5f5;
+  --color-surface: #f9f9f9;
+  --color-card: #ffffff;
+  --color-ink: #1a1c1c;
+  --color-ink-soft: #43474f;
+  --color-outline: #737780;
+  --color-border-subtle: #e0e0e0;
+  --color-success: #1b5e20;
+  --color-warning: #e65100;
+  --color-danger: #b71c1c;
+  --color-info: #01579b;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: 0.125rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+
+  --shadow-float: 0px 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-sand);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "tnum";
+}
+
+/* Label style for metadata/table headers */
+.label-md {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Data tables per design system */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.data-table thead th {
+  background: var(--color-ocean);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 10px 12px;
+  white-space: nowrap;
+}
+.data-table tbody td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #eeeeee;
+  vertical-align: top;
+}
+.data-table tbody tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+/* Pill status badges: 10% opacity bg, full opacity text */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 9999px;
+  padding: 2px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+.badge-verified { background: rgba(34, 139, 34, 0.1); color: #1b5e20; }
+.badge-pending { background: rgba(230, 81, 0, 0.1); color: #e65100; }
+.badge-error { background: rgba(183, 28, 28, 0.1); color: #b71c1c; }
+.badge-info { background: rgba(1, 87, 155, 0.1); color: #01579b; }
+.badge-neutral { background: rgba(115, 119, 128, 0.12); color: #43474f; }
+.badge-conflict { background: rgba(183, 28, 28, 0.1); color: #b71c1c; border: 1px solid rgba(183, 28, 28, 0.3); }
+
+/* Cards: white, 1px subtle border, no shadow (tonal layering) */
+.card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 0.5rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 18px;
+  min-height: 44px;
+  cursor: pointer;
+  transition: opacity 0.15s ease, background 0.15s ease;
+  text-decoration: none;
+}
+.btn-primary { background: var(--color-reef); color: #003344; }
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary { border: 1px solid var(--color-ocean); color: var(--color-ocean); background: transparent; }
+.btn-secondary:hover { background: rgba(0, 51, 102, 0.05); }
+.btn-ghost { color: var(--color-ocean); background: transparent; }
+.btn-ghost:hover { background: rgba(0, 51, 102, 0.05); }
+.btn-ocean { background: var(--color-ocean); color: #fff; }
+.btn-ocean:hover { background: var(--color-ocean-light); }
+
+/* Horizontal scroll pills for mobile tabs */
+.tab-pills {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+.tab-pills::-webkit-scrollbar { display: none; }
+
+/* MapLibre control polish */
+.maplibregl-ctrl-group {
+  border: 1px solid var(--color-border-subtle) !important;
+  border-radius: 4px !important;
+  box-shadow: var(--shadow-float) !important;
 }

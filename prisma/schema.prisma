@@ -1,0 +1,307 @@
+// Maldives Island Registry — source-first schema.
+// Local development uses SQLite (DATABASE_URL="file:../data/registry.db").
+// Production uses PostgreSQL + PostGIS via docker-compose; geometry payloads are
+// stored as GeoJSON text so the schema is portable across both engines.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Source {
+  id              String           @id @default(cuid())
+  slug            String           @unique
+  name            String
+  organization    String
+  url             String
+  datasetType     String // geospatial | statistical | encyclopedic | registry
+  accessMethod    String // scrape-html | arcgis-rest | file-download | playwright-network
+  license         String?
+  limitations     String?
+  fieldsCollected String? // JSON array of field names
+  archivePath     String? // path under data/raw
+  processingScript String?
+  contact         String?
+  priority        Int              @default(100) // lower = higher canonical priority
+  category        String // onemap | atolls | mbs | statsmap | census | indicators | future
+  documents       SourceDocument[]
+  scrapeRuns      ScrapeRun[]
+  fieldValues     FieldValue[]
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+}
+
+model SourceDocument {
+  id          String       @id @default(cuid())
+  sourceId    String
+  source      Source       @relation(fields: [sourceId], references: [id])
+  url         String
+  title       String?
+  docType     String // html-page | arcgis-layer | xlsx | csv | api-json
+  rawPath     String? // path to archived raw payload under data/raw
+  contentHash String?
+  fetchedAt   DateTime
+  publishedAt DateTime?
+  httpStatus  Int?
+  fieldValues FieldValue[]
+  createdAt   DateTime     @default(now())
+
+  @@index([sourceId])
+}
+
+model ScrapeRun {
+  id            String    @id @default(cuid())
+  sourceId      String
+  source        Source    @relation(fields: [sourceId], references: [id])
+  startedAt     DateTime
+  finishedAt    DateTime?
+  status        String // running | success | partial | failed
+  recordsFound  Int       @default(0)
+  pagesFetched  Int       @default(0)
+  failures      Int       @default(0)
+  failedUrls    String? // JSON array
+  log           String?
+  createdAt     DateTime  @default(now())
+
+  @@index([sourceId])
+}
+
+model Atoll {
+  id            String   @id @default(cuid())
+  code          String   @unique // administrative code, e.g. "K", "HA"
+  name          String
+  dhivehiName   String?
+  naturalAtoll  String?
+  region        String?
+  centroidLat   Float?
+  centroidLng   Float?
+  geometry      String? // GeoJSON
+  islands       Island[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Island {
+  id              String            @id @default(cuid())
+  slug            String            @unique
+  name            String
+  dhivehiName     String?
+  atollId         String?
+  atoll           Atoll?            @relation(fields: [atollId], references: [id])
+  status          String? // inhabited | uninhabited | resort | industrial | airport | agricultural
+  islandType      String?
+  useCategory     String?
+  lat             Float?
+  lng             Float?
+  areaSqKm        Float?
+  // Completeness scores 0-100, recomputed by ETL
+  identityScore        Int @default(0)
+  geometryScore        Int @default(0)
+  populationScore      Int @default(0)
+  environmentScore     Int @default(0)
+  infrastructureScore  Int @default(0)
+  sourceScore          Int @default(0)
+  overallScore         Int @default(0)
+  unresolvedConflicts  Int @default(0)
+  lastUpdatedAt   DateTime          @default(now())
+  names           IslandName[]
+  geometries      IslandGeometry[]
+  population      IslandPopulation[]
+  images          IslandImage[]
+  conflicts       DataConflict[]
+  matchCandidates IslandMatch[]
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  @@index([atollId])
+  @@index([name])
+}
+
+model IslandName {
+  id        String  @id @default(cuid())
+  islandId  String
+  island    Island  @relation(fields: [islandId], references: [id])
+  name      String
+  nameType  String // official | dhivehi | alternative | historical
+  sourceSlug String?
+
+  @@index([islandId])
+}
+
+model IslandGeometry {
+  id         String   @id @default(cuid())
+  islandId   String
+  island     Island   @relation(fields: [islandId], references: [id])
+  sourceSlug String
+  geomType   String // point | polygon
+  geometry   String // GeoJSON geometry
+  areaSqKm   Float?
+  fetchedAt  DateTime
+
+  @@index([islandId])
+}
+
+model IslandPopulation {
+  id            String   @id @default(cuid())
+  islandId      String
+  island        Island   @relation(fields: [islandId], references: [id])
+  sourceSlug    String
+  censusYear    Int?
+  total         Int?
+  male          Int?
+  female        Int?
+  resident      Int?
+  registered    Int?
+  households    Int?
+  rawRecord     String? // JSON of the original row
+  fetchedAt     DateTime
+
+  @@index([islandId])
+}
+
+model IslandImage {
+  id         String  @id @default(cuid())
+  islandId   String
+  island     Island  @relation(fields: [islandId], references: [id])
+  url        String
+  localPath  String?
+  caption    String?
+  sourceSlug String
+
+  @@index([islandId])
+}
+
+// Universal source-first value store. Every public data point lives here.
+model FieldValue {
+  id                 String          @id @default(cuid())
+  entityType         String // island | atoll
+  entityId           String
+  fieldName          String
+  sourceId           String
+  source             Source          @relation(fields: [sourceId], references: [id])
+  sourceDocumentId   String?
+  sourceDocument     SourceDocument? @relation(fields: [sourceDocumentId], references: [id])
+  rawValue           String?
+  normalizedValue    String?
+  canonicalCandidate Boolean         @default(false)
+  isCanonical        Boolean         @default(false)
+  canonicalReason    String?
+  selectedBy         String?
+  dateSelected       DateTime?
+  confidenceScore    Float           @default(0.5)
+  verificationStatus String          @default("unverified") // unverified | verified | disputed | outdated
+  dateScraped        DateTime
+  datePublished      DateTime?
+  dateVerified       DateTime?
+  sourceUrl          String
+  notes              String?
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+
+  @@index([entityType, entityId, fieldName])
+  @@index([sourceId])
+  @@index([fieldName])
+}
+
+model DataConflict {
+  id            String    @id @default(cuid())
+  islandId      String?
+  island        Island?   @relation(fields: [islandId], references: [id])
+  entityType    String    @default("island")
+  entityId      String?
+  fieldName     String
+  conflictType  String // value-mismatch | missing-in-source | duplicate | geometry-mismatch | no-geometry-match | no-census-match
+  severity      String // low | medium | high | critical
+  status        String    @default("unresolved") // unresolved | under_review | resolved | source_outdated | needs_external_confirmation
+  canonicalValue String?
+  sourceValues  String // JSON: [{source, value, url, dateScraped}]
+  confidenceScore Float   @default(0.5)
+  reviewerNote  String?
+  reviewedBy    String?
+  detectedAt    DateTime  @default(now())
+  reviewedAt    DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([islandId])
+  @@index([status])
+  @@index([fieldName])
+  @@index([severity])
+}
+
+// Cross-source island matching results, including low-confidence review queue.
+model IslandMatch {
+  id              String   @id @default(cuid())
+  islandId        String
+  island          Island   @relation(fields: [islandId], references: [id])
+  sourceSlug      String
+  sourceRecordKey String // e.g. raw record id or page url
+  matchMethod     String // exact-name | normalized-name | dhivehi-name | atoll-plus-name | fuzzy | spatial | manual
+  confidence      Float
+  needsReview     Boolean  @default(false)
+  reviewedBy      String?
+  reviewedAt      DateTime?
+  createdAt       DateTime @default(now())
+
+  @@index([islandId])
+  @@index([needsReview])
+}
+
+model AdminCorrection {
+  id          String   @id @default(cuid())
+  entityType  String
+  entityId    String
+  fieldName   String
+  oldValue    String?
+  newValue    String
+  reason      String
+  submittedBy String
+  status      String   @default("pending") // pending | approved | rejected
+  reviewedBy  String?
+  reviewedAt  DateTime?
+  createdAt   DateTime @default(now())
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  actor     String
+  action    String
+  entityType String?
+  entityId  String?
+  detail    String?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+model Snapshot {
+  id              String         @id @default(cuid())
+  snapshotDate    String         @unique // YYYY-MM-DD
+  generatedAt     DateTime
+  gitCommitHash   String?
+  appVersion      String?
+  schemaVersion   String?
+  totalIslands    Int            @default(0)
+  totalAtolls     Int            @default(0)
+  totalPopulation Int            @default(0)
+  totalConflicts  Int            @default(0)
+  manifest        String? // full JSON manifest
+  files           SnapshotFile[]
+  createdAt       DateTime       @default(now())
+}
+
+model SnapshotFile {
+  id         String   @id @default(cuid())
+  snapshotId String
+  snapshot   Snapshot @relation(fields: [snapshotId], references: [id])
+  path       String
+  label      String // canonical | raw | conflict | geospatial | metadata | database
+  sizeBytes  Int
+  checksum   String
+
+  @@index([snapshotId])
+}

@@ -1,0 +1,483 @@
+<html class="light" lang="en"><head></head><body class="text-on-surface">```html
+
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Maafushi | Maldives Island Registry</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "status-warning": "#E65100",
+                    "tertiary-fixed": "#92fa83",
+                    "on-surface": "#1a1c1c",
+                    "on-secondary-fixed-variant": "#004f51",
+                    "error-container": "#ffdad6",
+                    "surface-dim": "#dadada",
+                    "background": "#f9f9f9",
+                    "tertiary": "#002501",
+                    "on-surface-variant": "#43474f",
+                    "border-subtle": "#E0E0E0",
+                    "surface-variant": "#e2e2e2",
+                    "surface": "#f9f9f9",
+                    "inverse-primary": "#a7c8ff",
+                    "secondary-fixed": "#5af8fb",
+                    "surface-container-low": "#f3f3f3",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#002020",
+                    "primary": "#001e40",
+                    "reef-turquoise": "#00CED1",
+                    "on-secondary-container": "#006e70",
+                    "on-secondary": "#ffffff",
+                    "surface-card": "#FFFFFF",
+                    "on-tertiary-fixed-variant": "#005307",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-highest": "#e2e2e2",
+                    "status-error": "#B71C1C",
+                    "inverse-surface": "#2f3131",
+                    "secondary-container": "#56f5f8",
+                    "on-primary-fixed": "#001b3c",
+                    "island-green": "#228B22",
+                    "primary-fixed-dim": "#a7c8ff",
+                    "on-error-container": "#93000a",
+                    "status-info": "#01579B",
+                    "surface-container": "#eeeeee",
+                    "primary-fixed": "#d5e3ff",
+                    "tertiary-container": "#003d04",
+                    "on-tertiary-fixed": "#002201",
+                    "on-background": "#1a1c1c",
+                    "secondary-fixed-dim": "#2ddbde",
+                    "sand-neutral": "#F5F5F5",
+                    "tertiary-fixed-dim": "#77dd6a",
+                    "inverse-on-surface": "#f1f1f1",
+                    "outline-variant": "#c3c6d1",
+                    "primary-container": "#003366",
+                    "on-tertiary-container": "#4bb043",
+                    "on-primary-container": "#799dd6",
+                    "surface-tint": "#3a5f94",
+                    "surface-container-high": "#e8e8e8",
+                    "on-primary": "#ffffff",
+                    "status-success": "#1B5E20",
+                    "outline": "#737780",
+                    "ocean-deep": "#003366",
+                    "on-primary-fixed-variant": "#1f477b",
+                    "secondary": "#00696b",
+                    "surface-bright": "#f9f9f9",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "unit": "4px",
+                    "container-max-width": "1440px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #F5F5F5; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #E0E0E0; border-radius: 10px; }
+        .glass-panel { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.3); }
+        .tab-active { color: #003366; border-bottom: 2px solid #00CED1; font-weight: 600; }
+        .island-shape-mask { mask-image: radial-gradient(circle, black 50%, transparent 100%); }
+    </style>
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface dark:bg-surface-dim border-b border-border-subtle dark:border-outline shadow-sm">
+<div class="flex items-center gap-4">
+<span class="text-headline-sm font-headline-sm font-bold text-ocean-deep dark:text-primary-fixed-dim">Maldives Island Registry</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant hover:text-ocean-deep transition-colors font-label-md text-label-md" href="#">Explorer</a>
+<a class="text-reef-turquoise font-bold border-b-2 border-reef-turquoise pb-1 font-label-md text-label-md" href="#">Islands</a>
+<a class="text-on-surface-variant hover:text-ocean-deep transition-colors font-label-md text-label-md" href="#">Atolls</a>
+<a class="text-on-surface-variant hover:text-ocean-deep transition-colors font-label-md text-label-md" href="#">Environment</a>
+<a class="text-on-surface-variant hover:text-ocean-deep transition-colors font-label-md text-label-md" href="#">Data</a>
+<a class="text-on-surface-variant hover:text-ocean-deep transition-colors font-label-md text-label-md" href="#">About</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-all">
+<span class="material-symbols-outlined text-ocean-deep">notifications</span>
+</button>
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-all">
+<span class="material-symbols-outlined text-ocean-deep">account_circle</span>
+</button>
+</div>
+</header>
+<main class="pt-16 min-h-screen">
+<!-- Island Identity Header -->
+<section class="bg-white px-margin-desktop py-8 border-b border-border-subtle">
+<div class="max-w-[1440px] mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="px-3 py-1 rounded-full bg-island-green/10 text-island-green font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">verified</span> Verified Record
+                        </span>
+<span class="text-on-surface-variant font-label-md text-label-md tracking-wider">CODE: K04-03</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-ocean-deep mb-1">Maafushi</h1>
+<p class="font-headline-md text-headline-md text-on-surface-variant opacity-70">މާފުށި</p>
+</div>
+<div class="flex flex-wrap gap-4">
+<div class="bg-sand-neutral p-4 rounded border border-border-subtle min-w-[140px]">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Atoll</p>
+<p class="font-body-md text-body-md font-semibold text-ocean-deep">Kaafu (South Male)</p>
+</div>
+<div class="bg-sand-neutral p-4 rounded border border-border-subtle min-w-[140px]">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Status</p>
+<p class="font-body-md text-body-md font-semibold text-ocean-deep">Inhabited</p>
+</div>
+<div class="bg-sand-neutral p-4 rounded border border-border-subtle min-w-[140px]">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Data Health</p>
+<div class="flex items-center gap-2">
+<span class="font-body-md text-body-md font-semibold text-island-green">92%</span>
+<div class="w-20 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+<div class="h-full bg-island-green" style="width: 92%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Hero Section: Map & Gallery -->
+<section class="px-margin-desktop py-8 max-w-[1440px] mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter h-auto lg:h-[600px]">
+<!-- Interactive Map Canvas -->
+<div class="lg:col-span-8 bg-surface-container relative rounded-lg border border-border-subtle overflow-hidden group">
+<img alt="Satellite view of Maafushi Island" class="w-full h-full object-cover grayscale-[0.3] contrast-[1.1]" data-alt="A detailed satellite-style aerial photograph of Maafushi island in the Maldives. The island is surrounded by vibrant, crystal-clear turquoise lagoons and deep blue ocean waters. Tiny structures and a grid-like street layout are visible on the island's landmass, bordered by white sandy beaches. The lighting is bright and noon-day solar, highlighting the sharp contrast between the land and the surrounding coral reef structures in a professional geospatial mapping aesthetic." data-location="Maafushi, Maldives" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMYr85_8SDzsL4EmFAJ_txf3Z8C5ti_zRKC5CJfeF7WvKB5dYXVEBPikh8eLuCbdLtJw-NC238nDpa-q41CuOY_-1rmR70R0yNbqFwGVGx8Us1Xt86DzwmaJt5AYRZpPwL1ue3qWKgpKNMU0p-np1YJx-FLoemQmknjeeLhRdL8NlDVIB5BcvZfWMKnx2XWTTWkLghqxxocFJg57841Nj82nGK4wpFMjsybgD3G_Q6qSmzZIbr4JMp1hvp_c6gHcCzaE1AuO4qTls"/>
+<div class="absolute inset-0 bg-ocean-deep/5 pointer-events-none"></div>
+<!-- Map Controls Overlay -->
+<div class="absolute top-4 right-4 flex flex-col gap-2">
+<button class="w-10 h-10 bg-white shadow-sm border border-border-subtle flex items-center justify-center rounded-sm hover:bg-gray-50">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="w-10 h-10 bg-white shadow-sm border border-border-subtle flex items-center justify-center rounded-sm hover:bg-gray-50">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="w-10 h-10 bg-white shadow-sm border border-border-subtle flex items-center justify-center rounded-sm hover:bg-gray-50 mt-4">
+<span class="material-symbols-outlined">layers</span>
+</button>
+</div>
+<!-- Map Legend / Tooltip -->
+<div class="absolute bottom-4 left-4 glass-panel p-4 rounded border border-border-subtle max-w-xs">
+<p class="font-label-md text-label-md text-ocean-deep font-bold mb-2 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-reef-turquoise animate-pulse"></span> GEOSPATIAL LIVE VIEW
+                        </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Coordinates: 3.9448° N, 73.4890° E. Showing active cadastral layers and environmental zones.</p>
+</div>
+</div>
+<!-- Gallery Side Column -->
+<div class="lg:col-span-4 flex flex-col gap-gutter">
+<div class="flex-1 rounded-lg border border-border-subtle overflow-hidden relative group">
+<img alt="Maafushi Harbor" class="w-full h-full object-cover" data-alt="A breathtaking, high-angle view of the Maafushi harbor area at sunrise. Traditional Maldivian dhonis and modern speedboats are moored in the calm, translucent turquoise water. The shore is lined with lush tropical greenery and modern architectural structures that maintain a clean, organized urban planning look. The atmosphere is serene and bright, characterized by a soft morning glow that enhances the natural vibrance of the island's coastline." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuedT2ugAlS8kVzl0BBKTVR1elKSbluLle4kGbSxZZsNLFatYuH3_icpnyx9aNe9WhdYVAyO9tMc6tDYCd4T0reHBpxax9WQfWdu5n5DAQwcFRVVB89g_EJ1EbURvpMMnxAtiwJiXHNZL_aVYhGMlbm9ekc7hxrx43iNUn6vXPL0bF0BsdrObaYmMJiYmkaFGCdM2TGK5KGfmVCjEeANmqxszTjQS_xyBW7cn-osW2wJ8pc5ONGmGtDxJpM9vpgQYM6XGxef2Wmfs"/>
+<div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/60 to-transparent text-white opacity-0 group-hover:opacity-100 transition-opacity">
+<p class="font-label-sm text-label-sm uppercase">Harbor Development</p>
+</div>
+</div>
+<div class="flex-1 grid grid-cols-2 gap-gutter">
+<div class="rounded-lg border border-border-subtle overflow-hidden">
+<img alt="Beachfront" class="w-full h-full object-cover hover:scale-105 transition-transform" data-alt="A pristine white sand beach on Maafushi island, looking out towards a calm lagoon under a clear blue sky. The sand is brilliant white and fine-grained, meeting the shallow, crystal-clear turquoise water in a soft gradient. The scene is bright and airy, reflecting a high-key light-mode aesthetic. A few distant palm trees provide subtle green accents against the dominant oceanic blues and sandy whites, conveying a sense of tropical order and natural beauty." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJE4FgfJKat2UqKdX3HK4bj44KcIq-BbotggEg-YcOKQ9f7DQSVWfNy3ms-GdGPGfHgJxYGQMtgsJBRFmiOyDbdD3rqqE7IqUFz8TpeCHG40q_lZXcaZK8nBlIKpmv6utSpAf_ulVzlVqA_N-liDl-mnxCzLeZ-4WMQpg0GQDct6OhkI712u85NvxaWr46ixllJDNgrrtelIvP1GmuthoHZy_rhP3zsHH9suhreNJ9sAjUoYAxe5OFhMn6L6KCKWZE87WBWOp0v70"/>
+</div>
+<div class="rounded-lg border border-border-subtle overflow-hidden relative bg-ocean-deep flex items-center justify-center cursor-pointer hover:bg-ocean-deep/90">
+<img alt="More images" class="w-full h-full object-cover opacity-30" data-alt="A collection of vibrant, overlapping photographs depicting various aspects of island life in the Maldives, including local markets, historical landmarks, and underwater coral gardens. The composition is dynamic yet organized, using a bright and clean color palette of oceanic blues, lush greens, and warm sandy tones. The lighting across all images is consistent, high-key, and professional, suggesting a comprehensive and authoritative digital archive for the Maldives Island Registry." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDT-hnSUqHxZ2RZ9-YteJeS5BPzOirDIsamyEpkbL9YUOfjOFvXO3PjfIdFgUKRlzLNyOqaxRkUdsCaKksSyXG0p3WN3PqqZZ2B5HgNH_8e18zjZ5VFG6YBzqRqYZMa7M2-rFOriJ6gferrwbrmKVIOshKzdHRQ0EgSDW-Uod_w96wUx5L9YSrSxRbzptoZR2Zh5sUz5IR-BMHKVUySbhg8i3id2eKStpB4So1xU-E1I1i8Vpd4q1i_ebQtP7auLjW0cqmR4bmhRDg"/>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+<span class="font-headline-sm text-headline-sm font-bold">+12</span>
+<span class="font-label-sm text-label-sm uppercase">View All</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Information Tabs & Content -->
+<section class="px-margin-desktop py-8 max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left: Tabbed Content -->
+<div class="lg:col-span-8">
+<div class="bg-white rounded-lg border border-border-subtle overflow-hidden">
+<div class="flex border-b border-border-subtle px-6 overflow-x-auto no-scrollbar">
+<button class="py-4 px-6 tab-active text-label-md uppercase whitespace-nowrap">Overview</button>
+<button class="py-4 px-6 text-on-surface-variant hover:text-ocean-deep transition-colors text-label-md uppercase whitespace-nowrap">Geography</button>
+<button class="py-4 px-6 text-on-surface-variant hover:text-ocean-deep transition-colors text-label-md uppercase whitespace-nowrap">Environment</button>
+<button class="py-4 px-6 text-on-surface-variant hover:text-ocean-deep transition-colors text-label-md uppercase whitespace-nowrap">Infrastructure</button>
+<button class="py-4 px-6 text-on-surface-variant hover:text-ocean-deep transition-colors text-label-md uppercase whitespace-nowrap">History</button>
+</div>
+<div class="p-8">
+<div class="space-y-8" id="overview-content">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-ocean-deep mb-4 border-l-4 border-reef-turquoise pl-3">Administrative Profile</h3>
+<dl class="grid grid-cols-1 gap-y-3">
+<div class="flex justify-between border-b border-gray-50 pb-2">
+<dt class="font-body-sm text-body-sm text-on-surface-variant">Province</dt>
+<dd class="font-body-sm text-body-sm font-semibold">Central</dd>
+</div>
+<div class="flex justify-between border-b border-gray-50 pb-2">
+<dt class="font-body-sm text-body-sm text-on-surface-variant">Atoll Code</dt>
+<dd class="font-body-sm text-body-sm font-semibold">K (Kaafu)</dd>
+</div>
+<div class="flex justify-between border-b border-gray-50 pb-2">
+<dt class="font-body-sm text-body-sm text-on-surface-variant">Local Council</dt>
+<dd class="font-body-sm text-body-sm font-semibold">Maafushi Island Council</dd>
+</div>
+<div class="flex justify-between border-b border-gray-50 pb-2">
+<dt class="font-body-sm text-body-sm text-on-surface-variant">Population (2022)</dt>
+<dd class="font-body-sm text-body-sm font-semibold">2,997 registered</dd>
+</div>
+</dl>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-ocean-deep mb-4 border-l-4 border-reef-turquoise pl-3">Spatial Data</h3>
+<dl class="grid grid-cols-1 gap-y-3">
+<div class="flex justify-between border-b border-gray-50 pb-2">
+<dt class="font-body-sm text-body-sm text-on-surface-variant">Land Area (Hectares)</dt>
+<dd class="font-body-sm text-body-sm font-semibold">32.20 ha</dd>
+</div>
+<div class="flex justify-between border-b border-gray-50 pb-2">
+<dt class="font-body-sm text-body-sm text-on-surface-variant">Max Elevation</dt>
+<dd class="font-body-sm text-body-sm font-semibold">1.8 meters</dd>
+</div>
+<div class="flex justify-between border-b border-gray-50 pb-2">
+<dt class="font-body-sm text-body-sm text-on-surface-variant">Shoreline Length</dt>
+<dd class="font-body-sm text-body-sm font-semibold">2.45 km</dd>
+</div>
+<div class="flex justify-between border-b border-gray-50 pb-2">
+<dt class="font-body-sm text-body-sm text-on-surface-variant">Main Lagoon Area</dt>
+<dd class="font-body-sm text-body-sm font-semibold">410.50 ha</dd>
+</div>
+</dl>
+</div>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-ocean-deep mb-4 border-l-4 border-reef-turquoise pl-3">Summary Description</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                                    Maafushi is one of the most prominent inhabited islands in the Kaafu Atoll. Historically known for its high-security prison facility, the island underwent a major economic transformation following the introduction of local tourism in 2010. Today, it serves as a primary hub for guesthouse-based tourism in the Maldives. Geographically, the island is elongated and sits on the eastern rim of the South Malé Atoll, protected by an extensive reef system on its eastern seaward side.
+                                </p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+<div class="p-4 border border-border-subtle rounded flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-reef-turquoise/10 flex items-center justify-center text-reef-turquoise">
+<span class="material-symbols-outlined">water_drop</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm uppercase opacity-60">Avg. Salinity</p>
+<p class="font-body-md text-body-md font-bold">34.8 ppt</p>
+</div>
+</div>
+<div class="p-4 border border-border-subtle rounded flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-status-warning/10 flex items-center justify-center text-status-warning">
+<span class="material-symbols-outlined">thermostat</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm uppercase opacity-60">Sea Temp</p>
+<p class="font-body-md text-body-md font-bold">29.2°C</p>
+</div>
+</div>
+<div class="p-4 border border-border-subtle rounded flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-island-green/10 flex items-center justify-center text-island-green">
+<span class="material-symbols-outlined">waves</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm uppercase opacity-60">Tidal Range</p>
+<p class="font-body-md text-body-md font-bold">0.7m</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Data & Portal -->
+<aside class="lg:col-span-4 space-y-gutter">
+<!-- Data Quality Card -->
+<div class="bg-white p-6 rounded-lg border border-border-subtle">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase mb-4 tracking-wider">Record Verification</h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-island-green text-[18px]">check_circle</span> Registry Authenticated
+                            </span>
+<span class="text-island-green font-bold">100%</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-island-green text-[18px]">check_circle</span> Field Surveys (2023)
+                            </span>
+<span class="text-island-green font-bold">95%</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-status-warning text-[18px]">hourglass_empty</span> Infrastructure Logs
+                            </span>
+<span class="text-status-warning font-bold">82%</span>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-border-subtle">
+<p class="text-center font-label-sm text-label-sm text-on-surface-variant mb-2">Last Modified: May 14, 2024</p>
+<button class="w-full py-2 bg-ocean-deep text-white rounded font-label-md text-label-md uppercase hover:bg-ocean-deep/90 transition-colors">Request Data Correction</button>
+</div>
+</div>
+<!-- Download Portal -->
+<div class="bg-ocean-deep p-6 rounded-lg text-white">
+<h3 class="font-label-md text-label-md uppercase mb-4 tracking-wider opacity-80">Download Portal</h3>
+<div class="grid grid-cols-1 gap-3">
+<button class="flex items-center justify-between p-3 rounded bg-white/10 hover:bg-white/20 transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined">description</span>
+<span class="font-body-sm text-body-sm">GeoJSON Dataset</span>
+</div>
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity">download</span>
+</button>
+<button class="flex items-center justify-between p-3 rounded bg-white/10 hover:bg-white/20 transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined">table_view</span>
+<span class="font-body-sm text-body-sm">CSV Metadata Table</span>
+</div>
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity">download</span>
+</button>
+<button class="flex items-center justify-between p-3 rounded bg-white/10 hover:bg-white/20 transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+<span class="font-body-sm text-body-sm">PDF Island Summary</span>
+</div>
+<span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity">download</span>
+</button>
+</div>
+<p class="mt-4 font-label-sm text-label-sm opacity-60 leading-tight">Data provided under Ministry Attribution License v2.0.</p>
+</div>
+<!-- Quick Stats / Micro Interaction -->
+<div class="bg-white rounded-lg border border-border-subtle overflow-hidden">
+<div class="h-32 bg-gray-50 flex items-center justify-center relative overflow-hidden">
+<div class="relative text-center z-10">
+<p class="font-headline-sm text-headline-sm text-ocean-deep font-bold">12.4%</p>
+<p class="font-label-sm text-label-sm uppercase text-on-surface-variant">Annual Reclamation Rate</p>
+</div>
+</div>
+</div>
+</aside>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-ocean-deep text-white border-t border-white/10">
+<div class="max-w-container-max-width mx-auto px-margin-desktop py-8">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 border-b border-white/10 pb-8 mb-8">
+<!-- Brand & Mission Column -->
+<div class="md:col-span-4 flex flex-col items-start gap-4">
+<img alt="Coalition for Open Governance" class="h-10 w-auto brightness-0 invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWwhff2Q0bMPElOa2UarYL_s5qFtoSRJB3PR4v3uBGVa2ejjCqVE1DpvOr5F03sXQgLtfIS78zWP15PAGV6qApNH-2sh8n2lxrux39eCRQ9RVdvp9Vu55kwB46ZTiwAfow3nLI-QAo6MustEN4ctW9awIUhlUOc417Frj0ixf1s6nFUwuUCEkwU_FSjDqVEuutdF-PiQiRmTTMFDXC0FLH0x-ccR-jgcqMhjXSjuM-WHaCPD6ENfYZ4f3J4JkDcyDrH_hgRoe9zTY"/>
+<p class="text-on-primary-container/80 text-body-sm leading-relaxed max-w-sm">
+                    The Coalition for Open Governance operates under the Raajje Coalition for Good Governance, mandated to empower civic society through radical transparency and data-driven public policy in the Maldives.
+                </p>
+<div class="flex gap-4">
+<button class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-xs">language</span>
+</button>
+<button class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-xs">mail</span>
+</button>
+</div>
+</div>
+<!-- Registry Links -->
+<div class="md:col-span-2">
+<h5 class="text-label-md font-bold text-reef-turquoise uppercase tracking-wider mb-4">Registry</h5>
+<ul class="space-y-2">
+<li><a class="text-body-sm text-on-primary-container/70 hover:text-white transition-colors" href="#">Explorer</a></li>
+<li><a class="text-body-sm text-on-primary-container/70 hover:text-white transition-colors" href="#">Islands</a></li>
+<li><a class="text-body-sm text-on-primary-container/70 hover:text-white transition-colors" href="#">Atolls</a></li>
+<li><a class="text-body-sm text-on-primary-container/70 hover:text-white transition-colors" href="#">Environment</a></li>
+</ul>
+</div>
+<!-- Governance Links -->
+<div class="md:col-span-2">
+<h5 class="text-label-md font-bold text-reef-turquoise uppercase tracking-wider mb-4">Governance</h5>
+<ul class="space-y-2">
+<li><a class="text-body-sm text-on-primary-container/70 hover:text-white transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="text-body-sm text-on-primary-container/70 hover:text-white transition-colors" href="#">Terms of Service</a></li>
+<li><a class="text-body-sm text-on-primary-container/70 hover:text-white transition-colors" href="#">Data Attribution</a></li>
+<li><a class="text-body-sm text-on-primary-container/70 hover:text-white transition-colors" href="#">Help Desk</a></li>
+</ul>
+</div>
+<!-- Quote Column -->
+<div class="md:col-span-4 bg-primary-container/30 p-6 rounded-xl border border-white/5 relative overflow-hidden">
+<span class="material-symbols-outlined absolute -top-4 -right-4 text-white/5 text-7xl" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+<p class="text-body-sm text-white font-medium italic relative z-10 mb-4 leading-relaxed">
+                    "Open Data redistributes power that has been consolidated by a few. Those who benefit from secrecy will fight it. They will lose. Open Data is inevitable, question is will you proactively embrace it?"
+                </p>
+<div class="relative z-10">
+<p class="text-xs font-bold text-white uppercase tracking-wider">Ahmed Afrah Ismail</p>
+<p class="text-[10px] text-reef-turquoise uppercase">Coalition for Open Governance</p>
+</div>
+</div>
+</div>
+<!-- Bottom Credits Bar -->
+<div class="flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-[10px] text-on-primary-container/50 uppercase tracking-widest text-center md:text-left">
+                Built with public assets, by the public for the public.<br/>
+                Raajje Coalition for Good Governance
+            </p>
+<p class="text-[10px] text-on-primary-container/50 uppercase">© 2024 Coalition for Open Governance</p>
+</div>
+</div>
+</footer>
+<script>
+        // Simple tab switching logic for demo
+        document.querySelectorAll('button.text-label-md').forEach(button => {
+            button.addEventListener('click', function() {
+                const parent = this.parentElement;
+                parent.querySelectorAll('button').forEach(btn => {
+                    btn.classList.remove('tab-active');
+                    btn.classList.add('text-on-surface-variant');
+                });
+                this.classList.add('tab-active');
+                this.classList.remove('text-on-surface-variant');
+            });
+        });
+
+        // Map scroll interaction placeholder
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('header');
+            if (window.scrollY > 20) {
+                nav.classList.add('shadow-md');
+            } else {
+                nav.classList.remove('shadow-md');
+            }
+        });
+    </script>
+```</body></html>

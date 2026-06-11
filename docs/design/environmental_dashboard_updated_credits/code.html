@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Environmental Dashboard | Maldives Island Registry</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "status-warning": "#E65100",
+                    "tertiary-fixed": "#92fa83",
+                    "on-surface": "#1a1c1c",
+                    "on-secondary-fixed-variant": "#004f51",
+                    "error-container": "#ffdad6",
+                    "surface-dim": "#dadada",
+                    "background": "#f9f9f9",
+                    "tertiary": "#002501",
+                    "on-surface-variant": "#43474f",
+                    "border-subtle": "#E0E0E0",
+                    "surface-variant": "#e2e2e2",
+                    "surface": "#f9f9f9",
+                    "inverse-primary": "#a7c8ff",
+                    "secondary-fixed": "#5af8fb",
+                    "surface-container-low": "#f3f3f3",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#002020",
+                    "primary": "#001e40",
+                    "reef-turquoise": "#00CED1",
+                    "on-secondary-container": "#006e70",
+                    "on-secondary": "#ffffff",
+                    "surface-card": "#FFFFFF",
+                    "on-tertiary-fixed-variant": "#005307",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-highest": "#e2e2e2",
+                    "status-error": "#B71C1C",
+                    "inverse-surface": "#2f3131",
+                    "secondary-container": "#56f5f8",
+                    "on-primary-fixed": "#001b3c",
+                    "island-green": "#228B22",
+                    "primary-fixed-dim": "#a7c8ff",
+                    "on-error-container": "#93000a",
+                    "status-info": "#01579B",
+                    "surface-container": "#eeeeee",
+                    "primary-fixed": "#d5e3ff",
+                    "tertiary-container": "#003d04",
+                    "on-tertiary-fixed": "#002201",
+                    "on-background": "#1a1c1c",
+                    "secondary-fixed-dim": "#2ddbde",
+                    "sand-neutral": "#F5F5F5",
+                    "tertiary-fixed-dim": "#77dd6a",
+                    "inverse-on-surface": "#f1f1f1",
+                    "outline-variant": "#c3c6d1",
+                    "primary-container": "#003366",
+                    "on-tertiary-container": "#4bb043",
+                    "on-primary-container": "#799dd6",
+                    "surface-tint": "#3a5f94",
+                    "surface-container-high": "#e8e8e8",
+                    "on-primary": "#ffffff",
+                    "status-success": "#1B5E20",
+                    "outline": "#737780",
+                    "ocean-deep": "#003366",
+                    "on-primary-fixed-variant": "#1f477b",
+                    "secondary": "#00696b",
+                    "surface-bright": "#f9f9f9",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "unit": "4px",
+                    "container-max-width": "1440px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f5f5f5; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #E0E0E0; border-radius: 10px; }
+        .chart-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .7; } }
+    </style>
+</head>
+<body class="text-on-surface bg-background">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface dark:bg-surface-dim border-b border-border-subtle dark:border-outline shadow-sm">
+<div class="flex items-center gap-8">
+<span class="text-headline-sm font-headline-sm font-bold text-ocean-deep dark:text-primary-fixed-dim">Maldives Island Registry</span>
+<nav class="hidden md:flex gap-6">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-ocean-deep transition-colors" href="#">Explorer</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-ocean-deep transition-colors" href="#">Islands</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-ocean-deep transition-colors" href="#">Atolls</a>
+<a class="font-label-md text-label-md text-reef-turquoise font-bold border-b-2 border-reef-turquoise pb-1" href="#">Environment</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-ocean-deep transition-colors" href="#">Data</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-ocean-deep transition-colors" href="#">About</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-1.5 bg-surface-container rounded-lg border-none text-body-sm focus:ring-2 focus:ring-reef-turquoise w-64" placeholder="Search resources..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-ocean-deep p-2 hover:bg-surface-container-low rounded-full transition-all">notifications</button>
+<button class="material-symbols-outlined text-ocean-deep p-2 hover:bg-surface-container-low rounded-full transition-all">account_circle</button>
+</div>
+</header>
+<!-- SideNavBar (Map Explorer Sidebar) -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-[360px] z-40 flex flex-col p-4 bg-surface dark:bg-surface-dim border-r border-border-subtle dark:border-outline">
+<div class="mb-6">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 bg-ocean-deep rounded flex items-center justify-center text-white font-bold">MIR</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm font-semibold text-ocean-deep">Map Explorer</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Geospatial Controls</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-1 flex-grow overflow-y-auto custom-scrollbar">
+<div class="p-2 mb-2">
+<h3 class="font-label-md text-label-md uppercase tracking-wider text-outline mb-4">View Layers</h3>
+<div class="space-y-2">
+<button class="w-full flex items-center justify-between p-3 bg-secondary-container text-on-secondary-container rounded-lg font-semibold transition-transform active:scale-95">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined">layers</span>
+<span class="font-label-md text-label-md">Marine Protected Areas</span>
+</div>
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+<button class="w-full flex items-center justify-between p-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined">grass</span>
+<span class="font-label-md text-label-md">Mangrove Coverage</span>
+</div>
+<span class="material-symbols-outlined text-sm">visibility_off</span>
+</button>
+<button class="w-full flex items-center justify-between p-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined">waves</span>
+<span class="font-label-md text-label-md">Coral Bleaching Risk</span>
+</div>
+<span class="material-symbols-outlined text-sm">visibility_off</span>
+</button>
+</div>
+</div>
+<div class="p-2 border-t border-border-subtle pt-6">
+<h3 class="font-label-md text-label-md uppercase tracking-wider text-outline mb-4">Filters</h3>
+<div class="space-y-4">
+<div>
+<label class="font-label-md text-label-md block mb-2">Region (Atoll)</label>
+<select class="w-full border-border-subtle rounded px-3 py-2 text-body-sm focus:border-reef-turquoise focus:ring-0">
+<option>All Atolls</option>
+<option>North Malé Atoll</option>
+<option>Ari Atoll</option>
+<option>Baa Atoll (UNESCO)</option>
+</select>
+</div>
+<div>
+<label class="font-label-md text-label-md block mb-2">Data Year</label>
+<input class="w-full accent-reef-turquoise" max="2024" min="2010" step="1" type="range"/>
+<div class="flex justify-between text-[10px] text-outline mt-1">
+<span>2010</span>
+<span>2024</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 my-8 border-l-4 border-reef-turquoise bg-surface-container-low rounded-r-lg">
+<p class="font-body-sm text-body-sm text-on-surface italic leading-relaxed">
+    "Open Data redistributes power that has been consolidated by a few. Those who benefit from secrecy will fight it. They will lose. Open Data is inevitable, question is will you proactively embrace it?"
+  </p>
+<p class="font-label-sm text-label-sm text-reef-turquoise font-semibold mt-2">
+    — Ahmed Afrah Ismail, Coalition for Open Governance
+  </p>
+</div><button class="mt-auto w-full py-3 bg-ocean-deep text-white font-label-md text-label-md rounded hover:bg-opacity-90 transition-all">Export View</button>
+</aside>
+<!-- Main Content Area (Canvas) -->
+<main class="ml-[360px] pt-16 min-h-screen">
+<!-- Interactive Map Background Simulation -->
+<div class="relative h-[400px] w-full bg-surface-container overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover grayscale-[0.2]" data-alt="A high-altitude aerial perspective of a tropical archipelago with vibrant turquoise coral reefs surrounding emerald green islands. The water transitions from shallow translucent cyan to a deep royal blue at the ocean shelf. The scene is shot in a professional satellite cartography style with clean lines and high color saturation. Subtle map UI overlays with coordinate grids are visible." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkNv0Yw5uCzTvy0jC_jyWiO4Ram3hpXdqnYcPKXGMmeG3D5wIyhx84JVuwqftB6IChH9geBoInWIdfEB-cg21j016JaBBH_wZEUXZOubZtsanbSJf495iWGGkSY4sE7Lmeyfuz8P1JqMxi8hIa8nJN3lyHpFX3cSemf5sMwyeT3hAMJiaPYM4ElJ-17CtZB1zbsNVkWJ5Yomc62QFcNhwnrOpdgPDn_3TGrb87Kes9zMASqVP181NqkXrb5IQI2p6ZAuIbYMIASRU"/>
+<!-- Map Overlay Elements -->
+<div class="absolute top-8 left-8 p-4 bg-white/90 backdrop-blur-sm border border-border-subtle rounded-xl shadow-xl z-10 max-w-xs">
+<div class="flex items-center gap-2 mb-2">
+<span class="w-3 h-3 bg-island-green rounded-full"></span>
+<span class="font-label-md text-label-md">UNESCO Biosphere: Baa Atoll</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Active monitoring since 2011. Key habitats include mangroves, seagrass beds, and reefs.</p>
+</div>
+</div>
+<!-- Floating Map Controls -->
+<div class="absolute right-8 bottom-8 flex flex-col gap-2 z-10">
+<div class="flex flex-col bg-white border border-border-subtle rounded-lg shadow-sm">
+<button class="p-3 hover:bg-surface-container transition-colors border-b border-border-subtle"><span class="material-symbols-outlined">add</span></button>
+<button class="p-3 hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">remove</span></button>
+</div>
+<button class="bg-white p-3 border border-border-subtle rounded-lg shadow-sm hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+</div>
+</div>
+<!-- Dashboard Content -->
+<div class="px-margin-desktop py-8">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-ocean-deep">Environmental Integrity Report</h1>
+<p class="text-body-md text-on-surface-variant">Consolidated geospatial and biodiversity analytics for the Republic of Maldives.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 border border-ocean-deep text-ocean-deep font-label-md text-label-md hover:bg-ocean-deep/5 transition-all">
+<span class="material-symbols-outlined text-sm">download</span>
+                        Full PDF Report
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-reef-turquoise text-white font-label-md text-label-md hover:bg-opacity-90 transition-all shadow-md">
+<span class="material-symbols-outlined text-sm">share</span>
+                        Public Portal
+                    </button>
+</div>
+</div>
+<!-- KPI Row -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-8">
+<div class="bg-surface-card border border-border-subtle p-6 rounded-lg shadow-sm hover:shadow-md transition-all">
+<div class="flex justify-between mb-4">
+<span class="material-symbols-outlined text-ocean-deep bg-ocean-deep/10 p-2 rounded">water_ec</span>
+<span class="bg-island-green/10 text-island-green text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center">STABLE</span>
+</div>
+<div class="text-headline-md font-headline-md text-ocean-deep">34.2%</div>
+<div class="text-label-md font-label-md text-outline uppercase tracking-wider">Avg Coral Cover</div>
+<div class="mt-4 h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="w-[34.2%] h-full bg-reef-turquoise"></div>
+</div>
+</div>
+<div class="bg-surface-card border border-border-subtle p-6 rounded-lg shadow-sm hover:shadow-md transition-all">
+<div class="flex justify-between mb-4">
+<span class="material-symbols-outlined text-island-green bg-island-green/10 p-2 rounded">park</span>
+<span class="bg-status-warning/10 text-status-warning text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center">+2.1% YOY</span>
+</div>
+<div class="text-headline-md font-headline-md text-ocean-deep">8,450 Ha</div>
+<div class="text-label-md font-label-md text-outline uppercase tracking-wider">Protected Land Area</div>
+<div class="mt-4 h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="w-[65%] h-full bg-island-green"></div>
+</div>
+</div>
+<div class="bg-surface-card border border-border-subtle p-6 rounded-lg shadow-sm hover:shadow-md transition-all">
+<div class="flex justify-between mb-4">
+<span class="material-symbols-outlined text-status-info bg-status-info/10 p-2 rounded">diversity_2</span>
+<span class="bg-status-success/10 text-status-success text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center">VERIFIED</span>
+</div>
+<div class="text-headline-md font-headline-md text-ocean-deep">1,120+</div>
+<div class="text-label-md font-label-md text-outline uppercase tracking-wider">Identified Fish Species</div>
+<div class="mt-4 flex gap-1">
+<div class="h-1 flex-1 bg-status-success rounded-full"></div>
+<div class="h-1 flex-1 bg-status-success rounded-full"></div>
+<div class="h-1 flex-1 bg-status-success rounded-full"></div>
+<div class="h-1 flex-1 bg-surface-container rounded-full"></div>
+</div>
+</div>
+<div class="bg-surface-card border border-border-subtle p-6 rounded-lg shadow-sm hover:shadow-md transition-all">
+<div class="flex justify-between mb-4">
+<span class="material-symbols-outlined text-status-error bg-status-error/10 p-2 rounded">device_thermostat</span>
+<span class="bg-status-error/10 text-status-error text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center">CRITICAL</span>
+</div>
+<div class="text-headline-md font-headline-md text-ocean-deep">29.4°C</div>
+<div class="text-label-md font-label-md text-outline uppercase tracking-wider">Mean Surface Temp</div>
+<div class="mt-4 h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="w-[88%] h-full bg-status-error"></div>
+</div>
+</div>
+</div>
+<!-- Bento Charts Grid -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Main Trend Chart -->
+<div class="col-span-12 lg:col-span-8 bg-surface-card border border-border-subtle rounded-lg p-6">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-ocean-deep">Coral Reef Health Indices</h3>
+<p class="text-body-sm text-on-surface-variant">Benthic cover trends over the last decade.</p>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-reef-turquoise"></span>
+<span class="text-label-sm font-label-sm text-outline">Live Coral</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-ocean-deep"></span>
+<span class="text-label-sm font-label-sm text-outline">Algae/Other</span>
+</div>
+</div>
+</div>
+<!-- Chart Placeholder -->
+<div class="h-64 flex items-end gap-2 px-2 relative">
+<div class="absolute inset-x-0 bottom-0 border-b border-border-subtle"></div>
+<div class="absolute inset-y-0 left-0 border-l border-border-subtle"></div>
+<!-- Grid lines -->
+<div class="absolute w-full top-1/4 border-t border-surface-container border-dashed"></div>
+<div class="absolute w-full top-2/4 border-t border-surface-container border-dashed"></div>
+<div class="absolute w-full top-3/4 border-t border-surface-container border-dashed"></div>
+<!-- Simulated Bars -->
+<div class="flex-1 bg-surface-container-high rounded-t group relative">
+<div class="absolute bottom-0 w-full bg-reef-turquoise/40 rounded-t h-[40%] transition-all group-hover:h-[45%]"></div>
+<div class="absolute bottom-0 w-full bg-reef-turquoise rounded-t h-[30%] chart-pulse"></div>
+</div>
+<div class="flex-1 bg-surface-container-high rounded-t group relative">
+<div class="absolute bottom-0 w-full bg-reef-turquoise/40 rounded-t h-[42%]"></div>
+<div class="absolute bottom-0 w-full bg-reef-turquoise rounded-t h-[32%]"></div>
+</div>
+<div class="flex-1 bg-surface-container-high rounded-t group relative">
+<div class="absolute bottom-0 w-full bg-reef-turquoise/40 rounded-t h-[38%]"></div>
+<div class="absolute bottom-0 w-full bg-reef-turquoise rounded-t h-[28%]"></div>
+</div>
+<div class="flex-1 bg-surface-container-high rounded-t group relative">
+<div class="absolute bottom-0 w-full bg-reef-turquoise/40 rounded-t h-[35%]"></div>
+<div class="absolute bottom-0 w-full bg-reef-turquoise rounded-t h-[25%]"></div>
+</div>
+<div class="flex-1 bg-surface-container-high rounded-t group relative">
+<div class="absolute bottom-0 w-full bg-reef-turquoise/40 rounded-t h-[45%]"></div>
+<div class="absolute bottom-0 w-full bg-reef-turquoise rounded-t h-[35%]"></div>
+</div>
+<div class="flex-1 bg-surface-container-high rounded-t group relative">
+<div class="absolute bottom-0 w-full bg-reef-turquoise/40 rounded-t h-[48%]"></div>
+<div class="absolute bottom-0 w-full bg-reef-turquoise rounded-t h-[38%]"></div>
+</div>
+<div class="flex-1 bg-surface-container-high rounded-t group relative">
+<div class="absolute bottom-0 w-full bg-reef-turquoise/40 rounded-t h-[50%]"></div>
+<div class="absolute bottom-0 w-full bg-reef-turquoise rounded-t h-[40%]"></div>
+</div>
+<div class="flex-1 bg-surface-container-high rounded-t group relative">
+<div class="absolute bottom-0 w-full bg-reef-turquoise/40 rounded-t h-[52%]"></div>
+<div class="absolute bottom-0 w-full bg-reef-turquoise rounded-t h-[42%]"></div>
+</div>
+</div>
+<div class="flex justify-between mt-4 text-[10px] text-outline px-2 uppercase tracking-tighter">
+<span>2016</span><span>2017</span><span>2018</span><span>2019</span><span>2020</span><span>2021</span><span>2022</span><span>2023</span>
+</div>
+</div>
+<!-- Circular Biodiversity Chart -->
+<div class="col-span-12 lg:col-span-4 bg-ocean-deep text-white rounded-lg p-6 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm">Marine Protected Area Growth</h3>
+<p class="text-body-sm opacity-80 mt-1">Expanding conservation reach.</p>
+</div>
+<div class="flex items-center justify-center my-8">
+<div class="relative w-48 h-48 rounded-full border-[16px] border-white/10 flex items-center justify-center">
+<svg class="absolute inset-0 w-full h-full -rotate-90">
+<circle cx="50%" cy="50%" fill="none" r="42%" stroke="#00CED1" stroke-dasharray="264" stroke-dashoffset="66" stroke-linecap="round" stroke-width="16"></circle>
+</svg>
+<div class="text-center">
+<div class="text-headline-lg font-bold">75%</div>
+<div class="text-label-sm uppercase tracking-widest opacity-60">Target Reached</div>
+</div>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between items-center text-body-sm">
+<span class="opacity-80">Designated MPAs</span>
+<span class="font-bold">42 Sites</span>
+</div>
+<div class="flex justify-between items-center text-body-sm">
+<span class="opacity-80">Proposed Expansion</span>
+<span class="font-bold">18 Sites</span>
+</div>
+</div>
+</div>
+<!-- Recent Activities Table -->
+<div class="col-span-12 bg-surface-card border border-border-subtle rounded-lg overflow-hidden">
+<div class="p-6 border-b border-border-subtle flex justify-between items-center">
+<h3 class="font-headline-sm text-headline-sm text-ocean-deep">Regional Environment Snapshots</h3>
+<div class="flex gap-2">
+<button class="p-2 border border-border-subtle rounded hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-sm">filter_list</span></button>
+<button class="p-2 border border-border-subtle rounded hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-sm">more_vert</span></button>
+</div>
+</div>
+<table class="w-full text-left border-collapse">
+<thead class="bg-ocean-deep text-white font-label-md text-label-md uppercase tracking-wider">
+<tr>
+<th class="px-6 py-3">Location (Atoll)</th>
+<th class="px-6 py-3">Key Habitat</th>
+<th class="px-6 py-3">Health Status</th>
+<th class="px-6 py-3">Observation Date</th>
+<th class="px-6 py-3 text-right">Action</th>
+</tr>
+</thead>
+<tbody class="text-body-sm">
+<tr class="bg-white border-b border-surface-container hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-semibold text-ocean-deep">Baa Atoll</td>
+<td class="px-6 py-4">Mangroves &amp; Seagrass</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-island-green/10 text-island-green">
+                                        EXCELLENT
+                                    </span>
+</td>
+<td class="px-6 py-4 text-outline">Oct 12, 2024</td>
+<td class="px-6 py-4 text-right">
+<button class="text-reef-turquoise hover:underline">View Details</button>
+</td>
+</tr>
+<tr class="bg-surface-container-lowest border-b border-surface-container hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-semibold text-ocean-deep">North Malé Atoll</td>
+<td class="px-6 py-4">Hard Coral Reefs</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-status-warning/10 text-status-warning">
+                                        MONITORING
+                                    </span>
+</td>
+<td class="px-6 py-4 text-outline">Oct 10, 2024</td>
+<td class="px-6 py-4 text-right">
+<button class="text-reef-turquoise hover:underline">View Details</button>
+</td>
+</tr>
+<tr class="bg-white border-b border-surface-container hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-semibold text-ocean-deep">Addu City Atoll</td>
+<td class="px-6 py-4">Wetland Forests</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-island-green/10 text-island-green">
+                                        RESTORED
+                                    </span>
+</td>
+<td class="px-6 py-4 text-outline">Sep 28, 2024</td>
+<td class="px-6 py-4 text-right">
+<button class="text-reef-turquoise hover:underline">View Details</button>
+</td>
+</tr>
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-semibold text-ocean-deep">Gaafu Dhaalu Atoll</td>
+<td class="px-6 py-4">Deep Sea Gorgonians</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-status-error/10 text-status-error">
+                                        BLEACHING
+                                    </span>
+</td>
+<td class="px-6 py-4 text-outline">Sep 24, 2024</td>
+<td class="px-6 py-4 text-right">
+<button class="text-reef-turquoise hover:underline">View Details</button>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="px-6 py-3 bg-surface-container text-label-sm text-outline flex justify-between items-center">
+<span>Showing 4 of 26 Regional Snapshots</span>
+<div class="flex gap-4">
+<button class="hover:text-ocean-deep">Previous</button>
+<button class="hover:text-ocean-deep">Next</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-ocean-deep text-white mt-10">
+<div class="max-w-container-max-width mx-auto px-margin-desktop py-8">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter border-b border-white/10 pb-8 mb-8">
+<!-- Brand & Mission Column -->
+<div class="md:col-span-4 flex flex-col items-start gap-4">
+<img alt="Coalition for Open Governance" class="h-10 w-auto brightness-0 invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWwhff2Q0bMPElOa2UarYL_s5qFtoSRJB3PR4v3uBGVa2ejjCqVE1DpvOr5F03sXQgLtfIS78zWP15PAGV6qApNH-2sh8n2lxrux39eCRQ9RVdvp9Vu55kwB46ZTiwAfow3nLI-QAo6MustEN4ctW9awIUhlUOc417Frj0ixf1s6nFUwuUCEkwU_FSjDqVEuutdF-PiQiRmTTMFDXC0FLH0x-ccR-jgcqMhjXSjuM-WHaCPD6ENfYZ4f3J4JkDcyDrH_hgRoe9zTY"/>
+<p class="text-on-primary-container/80 text-body-sm leading-relaxed max-w-sm">
+                The Coalition for Open Governance operates under the Raajje Coalition for Good Governance, mandated to empower civic society through radical transparency and data-driven public policy in the Maldives.
+            </p>
+<div class="flex gap-4">
+<button class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-xs">language</span>
+</button>
+<button class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-xs">mail</span>
+</button>
+</div>
+</div>
+<!-- Nav Links Column -->
+<div class="md:col-span-2">
+<h5 class="text-label-md font-bold text-reef-turquoise uppercase tracking-wider mb-4">Registry</h5>
+<ul class="space-y-2">
+<li><a class="text-body-sm text-on-primary-container/70 hover:text-white transition-colors" href="#">Data Explorer</a></li>
+<li><a class="text-body-sm text-on-primary-container/70 hover:text-white transition-colors" href="#">Atoll Registry</a></li>
+<li><a class="text-body-sm text-on-primary-container/70 hover:text-white transition-colors" href="#">Environment Hub</a></li>
+<li><a class="text-body-sm text-on-primary-container/70 hover:text-white transition-colors" href="#">Historical Maps</a></li>
+</ul>
+</div>
+<!-- Policy & Support Column -->
+<div class="md:col-span-2">
+<h5 class="text-label-md font-bold text-reef-turquoise uppercase tracking-wider mb-4">Governance</h5>
+<ul class="space-y-2">
+<li><a class="text-body-sm text-on-primary-container/70 hover:text-white transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="text-body-sm text-on-primary-container/70 hover:text-white transition-colors" href="#">API Terms</a></li>
+<li><a class="text-body-sm text-on-primary-container/70 hover:text-white transition-colors" href="#">Open Data License</a></li>
+<li><a class="text-body-sm text-on-primary-container/70 hover:text-white transition-colors" href="#">Help Desk</a></li>
+</ul>
+</div>
+<!-- Unified Quote Section -->
+<div class="md:col-span-4 bg-primary-container/30 p-6 rounded-2xl border border-white/5 relative overflow-hidden">
+<span class="material-symbols-outlined absolute -top-4 -right-4 text-white/5 text-8xl">format_quote</span>
+<p class="text-body-md text-white font-medium italic relative z-10 mb-4 leading-relaxed">
+                "Open Data redistributes power that has been consolidated by a few. Those who benefit from secrecy will fight it. They will lose. Open Data is inevitable, question is will you proactively embrace it?"
+            </p>
+<div class="flex items-center gap-3 relative z-10">
+<div>
+<p class="text-xs font-bold text-white uppercase tracking-wider">Ahmed Afrah Ismail</p>
+<p class="text-[10px] text-reef-turquoise">Coalition for Open Governance</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-[11px] text-on-primary-container/50 uppercase tracking-[0.2em]">
+            Built with public assets • Raajje Coalition for Good Governance<br/>
+            Built with public assets, by the public for the public.
+        </p>
+<p class="text-[11px] text-on-primary-container/50">© 2026 Coalition for Open Governance</p>
+</div>
+</div>
+</footer>
+<!-- Micro-interaction Scripts -->
+<script>
+        // Tab switching logic for the sidebar
+        const sidebarButtons = document.querySelectorAll('aside button');
+        sidebarButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                if(this.innerText.includes('Export')) return; // Ignore CTA
+                
+                sidebarButtons.forEach(b => {
+                    b.classList.remove('bg-secondary-container', 'text-on-secondary-container', 'font-semibold');
+                    b.classList.add('text-on-surface-variant', 'hover:bg-surface-container-high');
+                });
+                
+                this.classList.add('bg-secondary-container', 'text-on-secondary-container', 'font-semibold');
+                this.classList.remove('text-on-surface-variant', 'hover:bg-surface-container-high');
+            });
+        });
+    </script>
+</body></html>

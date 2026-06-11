@@ -1,0 +1,107 @@
+name: Data snapshot
+
+on:
+  workflow_dispatch:
+    inputs:
+      snapshot_date:
+        description: "Snapshot date (YYYY-MM-DD, defaults to today)"
+        required: false
+  schedule:
+    # Weekly, Mondays 03:00 UTC
+    - cron: "0 3 * * 1"
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Prepare database
+        run: |
+          cp .env.example .env
+          npx prisma migrate deploy
+          npm run db:seed
+
+      # Each scraper may fail independently; partial results are still snapshotted.
+      - name: Scrape OneMap
+        id: onemap
+        continue-on-error: true
+        run: npm run scrape:onemap
+
+      - name: Scrape StatsMap
+        id: statsmap
+        continue-on-error: true
+        run: npm run scrape:statsmap
+
+      - name: Scrape MBS census tables
+        id: mbs
+        continue-on-error: true
+        run: npm run scrape:mbs
+
+      - name: Scrape Atolls of Maldives
+        id: atolls
+        continue-on-error: true
+        run: npm run scrape:atolls
+
+      # OneMap is the registry backbone — fail clearly if it failed.
+      - name: Fail if backbone source failed
+        if: steps.onemap.outcome == 'failure'
+        run: |
+          echo "::error::OneMap scrape failed — snapshot aborted (backbone source)."
+          exit 1
+
+      - name: Warn on partial sources
+        if: steps.statsmap.outcome == 'failure' || steps.mbs.outcome == 'failure' || steps.atolls.outcome == 'failure'
+        run: echo "::warning::One or more secondary sources failed; producing a partial snapshot. See scrape_report.md."
+
+      - name: ETL — normalize, match, detect conflicts
+        run: |
+          npm run etl:normalize
+          npm run etl:match-islands
+          npm run etl:detect-conflicts
+
+      - name: Create snapshot (CSV, GeoJSON, SQLite, Postgres dump, checksums)
+        run: |
+          export SNAPSHOT_DATE=${{ github.event.inputs.snapshot_date || '' }}
+          [ -z "$SNAPSHOT_DATE" ] && export SNAPSHOT_DATE=$(date -u +%F)
+          echo "SNAPSHOT_DATE=$SNAPSHOT_DATE" >> "$GITHUB_ENV"
+          npm run snapshot:create
+          npm run snapshot:validate -- "$SNAPSHOT_DATE"
+          npm run snapshot:export -- "$SNAPSHOT_DATE"
+
+      - name: Commit snapshot to data branch
+        run: |
+          git config user.name "registry-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add -f "data/snapshots/$SNAPSHOT_DATE"
+          if git diff --cached --quiet; then
+            echo "No data changes to commit."
+          else
+            git commit -m "Data snapshot $SNAPSHOT_DATE"
+            git push origin HEAD:main
+          fi
+
+      - name: Attach snapshot to GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          npm run snapshot:release -- "$SNAPSHOT_DATE"
+
+      - name: Upload artifact (fallback)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: snapshot-${{ env.SNAPSHOT_DATE }}
+          path: data/snapshots/maldives-island-registry-snapshot-*.zip
+          if-no-files-found: ignore
