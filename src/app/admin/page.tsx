@@ -12,7 +12,7 @@ export const metadata = { title: "Admin Dashboard" };
 
 const COMMANDS = [
   ["Trigger all scrapers", "npm run scrape:onemap && npm run scrape:statsmap && npm run scrape:mbs && npm run scrape:atolls"],
-  ["Run ETL pipeline", "npm run etl:normalize && npm run etl:match-islands && npm run etl:detect-conflicts"],
+  ["Run ETL pipeline", "npm run etl:normalize && npm run etl:match-islands && npm run etl:detect-conflicts && npm run etl:apply-onemap-policy"],
   ["Generate snapshot", "npm run snapshot:create && npm run snapshot:validate"],
   ["Export reports", "npm run export:csv && npm run export:geojson"],
 ];
@@ -110,7 +110,13 @@ export default async function AdminPage() {
                         <li key={i}><strong>{v.source}:</strong> {v.note ?? v.normalizedValue ?? v.rawValue ?? "—"}</li>
                       ))}
                     </ul>
-                    <ConflictReviewActions conflictId={c.id} />
+                    {c.conflictType === "duplicate" ? (
+                      <Link className="btn btn-ocean mt-2 inline-flex min-h-[36px] px-3 py-1 text-xs items-center" href={`/admin/duplicates/${c.id}`}>
+                        Review side by side →
+                      </Link>
+                    ) : (
+                      <ConflictReviewActions conflictId={c.id} />
+                    )}
                   </div>
                 );
               })}
