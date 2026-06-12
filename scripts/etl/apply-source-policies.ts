@@ -218,6 +218,41 @@ async function main() {
     atollResolved++;
   }
 
+  // ---------------- Steward decisions (2026-06-12) ----------------
+  // Atoll disagreements reviewed individually by the registry steward: in all
+  // four, the registry's surveyed coordinates fall inside OneMap's atoll, and
+  // the dissenting source value is a data-entry/wrong-match error — most
+  // likely a same-named island elsewhere in the country.
+  const STEWARD_ATOLL_DECISIONS: { slug: string; note: string }[] = [
+    {
+      slug: "lh-vihafarufinolhu",
+      note: "Steward review 2026-06-12: OneMap (Lh) correct — coordinates 5.456N 73.582E fall in Lhaviyani; Atolls of Maldives entry (N) is a data-entry/wrong-match error, likely the same-named island in Noonu.",
+    },
+    {
+      slug: "lh-dhihdhoo",
+      note: "Steward review 2026-06-12: OneMap (Lh) correct — coordinates 5.376N 73.382E fall in Lhaviyani; StatsMap (ADh) and Atolls of Maldives (HA) matched same-named islands elsewhere (Dhihdhoo is also the Haa Alifu capital).",
+    },
+    {
+      slug: "r-maamingili",
+      note: "Steward review 2026-06-12: OneMap (R) correct — coordinates 5.651N 72.885E fall in Raa; StatsMap (ADh) matched the well-known Maamigili airport island in Alifu Dhaalu instead.",
+    },
+    {
+      slug: "k-huraa",
+      note: "Steward review 2026-06-12: OneMap (K) correct — coordinates 4.334N 73.602E fall in Kaafu; Atolls of Maldives entry (HDh) is a data-entry/wrong-match error.",
+    },
+  ];
+  let stewardResolved = 0;
+  for (const d of STEWARD_ATOLL_DECISIONS) {
+    const island = await prisma.island.findUnique({ where: { slug: d.slug } });
+    if (!island) continue;
+    const res = await prisma.dataConflict.updateMany({
+      where: { islandId: island.id, fieldName: "atoll", conflictType: "value-mismatch", status: "unresolved" },
+      data: { status: "resolved", reviewedBy: "admin", reviewedAt: now, reviewerNote: d.note },
+    });
+    if (res.count) touchedIslands.add(island.id);
+    stewardResolved += res.count;
+  }
+
   // ---------------- Sync + audit ----------------
   for (const islandId of touchedIslands) {
     const unresolved = await prisma.dataConflict.count({ where: { islandId, status: "unresolved" } });
@@ -232,14 +267,15 @@ async function main() {
         `OneMap: ${onemapVerified} values verified, ${nameResolved} name conflicts resolved, ` +
         `${coordResolved} coordinate resolved (≤${COORD_RESOLVE_KM} km), ${coordEscalated} escalated. ` +
         `Census 2022: ${censusVerified} values verified, ${populationResolved} population conflicts resolved. ` +
-        `Atoll naming: ${atollResolved} resolved as same-atoll naming-convention differences, ${atollLeft} kept (genuine disagreement).`,
+        `Atoll naming: ${atollResolved} resolved as same-atoll naming-convention differences, ${atollLeft} kept (genuine disagreement). ` +
+        `Steward decisions: ${stewardResolved} atoll disagreements resolved in OneMap's favour (coordinate-verified).`,
     },
   });
 
   console.log(
     `Done. OneMap — name: ${nameResolved}, coords resolved: ${coordResolved}, escalated: ${coordEscalated}. ` +
       `Census 2022 — population: ${populationResolved}. ` +
-      `Atoll naming — resolved: ${atollResolved}, kept: ${atollLeft}. Islands updated: ${touchedIslands.size}.`,
+      `Atoll naming — resolved: ${atollResolved}, kept: ${atollLeft}. Steward decisions: ${stewardResolved}. Islands updated: ${touchedIslands.size}.`,
   );
 }
 
