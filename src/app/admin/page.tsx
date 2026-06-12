@@ -12,7 +12,7 @@ export const metadata = { title: "Admin Dashboard" };
 
 const COMMANDS = [
   ["Trigger all scrapers", "npm run scrape:onemap && npm run scrape:statsmap && npm run scrape:mbs && npm run scrape:atolls"],
-  ["Run ETL pipeline", "npm run etl:normalize && npm run etl:match-islands && npm run etl:detect-conflicts && npm run etl:apply-onemap-policy"],
+  ["Run ETL pipeline", "npm run etl:normalize && npm run etl:match-islands && npm run etl:detect-conflicts && npm run etl:apply-source-policies"],
   ["Generate snapshot", "npm run snapshot:create && npm run snapshot:validate"],
   ["Export reports", "npm run export:csv && npm run export:geojson"],
 ];

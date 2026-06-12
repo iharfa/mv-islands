@@ -30,7 +30,7 @@ const SOURCES = [
     priority: 20,
     license: "Official statistics; free reuse with attribution.",
     limitations:
-      "Island-level tables cover administrative islands only; resorts/industrial islands are aggregated separately.",
+      "Island-level tables cover administrative islands only; resorts/industrial islands are aggregated separately. Registry policy: the published census is the verified primary source for population values; StatsMap (same publisher) is treated as a derived visualisation that may lag it.",
     archivePath: "data/raw/mbs",
     processingScript: "scripts/scrape/mbs.ts",
   },
@@ -74,7 +74,7 @@ const SOURCES = [
     priority: 50,
     license: "Public government website; terms not formally published.",
     limitations:
-      "Historical/encyclopedic record. Coordinates, areas and statuses can be outdated; valuable for history, environment notes and Dhivehi names.",
+      "Historical/encyclopedic archive. The site platform dates to 2013 and the last observable record update is August 2024; many island entries are far older. Island status, use and ownership (resort, agricultural and industrial leases) may have changed since publication. Valuable for history, environment notes and Dhivehi names.",
     archivePath: "data/raw/atollsofmaldives",
     processingScript: "scripts/scrape/atolls.ts",
   },

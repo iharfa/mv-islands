@@ -25,6 +25,21 @@ export function prettyFieldName(field: string): string {
     .replace(/^\w/, (c) => c.toUpperCase());
 }
 
+/** Dated staleness notice, shown wherever Atolls of Maldives contributes values. */
+export function AomDisclaimer() {
+  return (
+    <div className="card p-4 border-warning bg-sand/60" role="note">
+      <p className="text-sm">
+        <strong>⚠ Historical source notice.</strong> Values from <em>Atolls of Maldives</em> come from a
+        government heritage archive whose island records were last observably updated in <strong>August 2024</strong> —
+        and many entries date back to the 1990s–2010s (the site platform itself dates to 2013). Island status,
+        use and ownership — resort, agricultural and industrial leases — may have changed since publication.
+        Where current registries disagree, the registry prefers OneMap and Census 2022 values.
+      </p>
+    </div>
+  );
+}
+
 /**
  * Source-comparison display for one field: canonical value followed by every
  * source's raw + normalized value, confidence, verification and scrape date.
@@ -37,8 +52,10 @@ export default function FieldValueTable({
   conflictFields: Set<string>;
 }) {
   if (!fields.size) return null;
+  const hasAom = [...fields.values()].some((vs) => vs.some((v) => v.source.slug === "atolls-of-maldives"));
   return (
     <div className="space-y-5">
+      {hasAom && <AomDisclaimer />}
       {[...fields.entries()].map(([fieldName, values]) => {
         const canonical = values.find((v) => v.isCanonical) ?? values[0];
         const hasConflict = conflictFields.has(fieldName);
