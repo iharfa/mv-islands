@@ -38,6 +38,7 @@ const SECTIONS: { title: string; note?: string; items: Item[] }[] = [
     title: "Conflict datasets",
     items: [
       { name: "islands_conflicts.csv", href: "/api/downloads/conflicts.csv", format: "CSV", labels: ["conflict dataset"], description: "Every detected cross-source disagreement with all source values, severity and review status." },
+      { name: "aom_data_issues.csv", href: "/api/downloads/aom-data-issues.csv", format: "CSV", labels: ["conflict dataset", "metadata"], description: "Known issues with Atolls of Maldives data: islands missing from the archive and every value where AoM disagrees with current registries (the archive's last observable update is August 2024; many records are older). Check this before reusing AoM data." },
     ],
   },
   {

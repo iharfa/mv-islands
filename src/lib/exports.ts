@@ -110,6 +110,40 @@ export async function conflictsRows() {
   }));
 }
 
+/**
+ * AoM data-issues dataset: every known problem with Atolls of Maldives data —
+ * islands missing from the archive, and every value where AoM disagrees with
+ * the registry's canonical (current) sources — so anyone reusing AoM data
+ * obtained from this site knows exactly which records are affected.
+ */
+export async function aomDataIssuesRows() {
+  const conflicts = await prisma.dataConflict.findMany({
+    include: { island: { select: { slug: true, name: true, atoll: { select: { code: true } } } } },
+    orderBy: [{ fieldName: "asc" }, { detectedAt: "desc" }],
+  });
+  const rows: Record<string, unknown>[] = [];
+  for (const c of conflicts) {
+    const values: { source: string; rawValue?: string; normalizedValue?: string; note?: string }[] =
+      JSON.parse(c.sourceValues);
+    const aom = values.find((v) => v.source === "atolls-of-maldives");
+    const isMissing = c.conflictType === "missing-in-source";
+    if (!aom && !isMissing) continue;
+    rows.push({
+      island_slug: c.island?.slug ?? "",
+      island_name: c.island?.name ?? "",
+      atoll: c.island?.atoll?.code ?? "",
+      issue_type: isMissing ? "missing-from-aom" : `aom-${c.conflictType}`,
+      field_name: c.fieldName,
+      aom_value: aom ? (aom.normalizedValue ?? aom.rawValue ?? aom.note ?? "") : "no AoM page matched",
+      registry_canonical_value: c.canonicalValue ?? "",
+      review_status: c.status,
+      reviewer_note: c.reviewerNote ?? "",
+      detected_at: c.detectedAt.toISOString(),
+    });
+  }
+  return rows;
+}
+
 export async function atollsRows() {
   const atolls = await prisma.atoll.findMany({ include: { _count: { select: { islands: true } } }, orderBy: { code: "asc" } });
   return atolls.map((a) => ({

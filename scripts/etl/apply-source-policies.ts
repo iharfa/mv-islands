@@ -30,6 +30,25 @@
  *    with the code in brackets ("Seenu (S)"). Values that map to different
  *    atolls are genuine assignment disagreements and stay unresolved.
  *
+ * 4. Status vocabulary (steward direction 2026-06-12). StatsMap, a census
+ *    map, labels islands without resident administrative population
+ *    "uninhabited" even when they are resorts/industrial/institutional
+ *    islands. OneMap's finer breakdown is preferred. Conflicts where OneMap
+ *    says resort/industrial/institutional and every other source says either
+ *    the same or "uninhabited" are resolved in OneMap's favour. The
+ *    inhabited-vs-other-inhabited group and disagreements involving other
+ *    statuses are left for individual steward review.
+ *
+ * 5. Island area (steward direction 2026-06-12). OneMap areas come from
+ *    current survey polygons; AoM areas from a historical archive that
+ *    predates extensive land reclamation. All area conflicts where OneMap
+ *    provides the canonical value are resolved in OneMap's favour.
+ *
+ * 6. Use category (steward direction 2026-06-12). AoM and OneMap use
+ *    different vocabularies for the same use ("Resorts" vs "Resort",
+ *    "Mariculture" vs "Aquaculture") and AoM's lease data is stale. OneMap's
+ *    value is treated as correct for this bucket.
+ *
  * Resolutions only record the review — the disagreement itself remains
  * published with every source's value, per registry principles.
  *
@@ -218,6 +237,79 @@ async function main() {
     atollResolved++;
   }
 
+  // ---------------- Policy 4: Status vocabulary ----------------
+  const STATUS_FINE = new Set(["resort", "industrial", "institutional"]);
+  let statusResolved = 0;
+  const statusConflicts = await prisma.dataConflict.findMany({
+    where: { status: "unresolved", conflictType: "value-mismatch", fieldName: "status" },
+  });
+  for (const c of statusConflicts) {
+    const values: SourceValue[] = JSON.parse(c.sourceValues);
+    const om = sourceValue(values, "onemap");
+    if (om == null || !STATUS_FINE.has(om) || !sameValue(c.canonicalValue, om)) continue;
+    const others = values.filter((v) => v.source !== "onemap").map((v) => v.normalizedValue ?? v.rawValue ?? "");
+    if (!others.every((v) => v === "uninhabited" || sameValue(v, om))) continue;
+    await prisma.dataConflict.update({
+      where: { id: c.id },
+      data: {
+        status: "resolved",
+        reviewedBy: "policy:onemap-primary",
+        reviewedAt: now,
+        reviewerNote:
+          `OneMap's finer status breakdown (${om}) confirmed as canonical. StatsMap labels islands without ` +
+          "resident administrative population 'uninhabited' by census definition — a vocabulary difference, not a disagreement.",
+      },
+    });
+    if (c.islandId) touchedIslands.add(c.islandId);
+    statusResolved++;
+  }
+
+  // ---------------- Policy 5: Island area ----------------
+  let areaResolved = 0;
+  const areaConflicts = await prisma.dataConflict.findMany({
+    where: { status: "unresolved", conflictType: "value-mismatch", fieldName: "area_ha" },
+  });
+  for (const c of areaConflicts) {
+    const om = sourceValue(JSON.parse(c.sourceValues), "onemap");
+    if (!sameValue(c.canonicalValue, om)) continue;
+    await prisma.dataConflict.update({
+      where: { id: c.id },
+      data: {
+        status: "resolved",
+        reviewedBy: "policy:onemap-primary",
+        reviewedAt: now,
+        reviewerNote:
+          "OneMap area confirmed as canonical: surveyed polygon areas from the current national geospatial portal. " +
+          "AoM areas are historical and predate extensive land reclamation; the AoM value remains published.",
+      },
+    });
+    if (c.islandId) touchedIslands.add(c.islandId);
+    areaResolved++;
+  }
+
+  // ---------------- Policy 6: Use category ----------------
+  let useResolved = 0;
+  const useConflicts = await prisma.dataConflict.findMany({
+    where: { status: "unresolved", conflictType: "value-mismatch", fieldName: "use_category" },
+  });
+  for (const c of useConflicts) {
+    const om = sourceValue(JSON.parse(c.sourceValues), "onemap");
+    if (om == null || !sameValue(c.canonicalValue, om)) continue;
+    await prisma.dataConflict.update({
+      where: { id: c.id },
+      data: {
+        status: "resolved",
+        reviewedBy: "policy:onemap-primary",
+        reviewedAt: now,
+        reviewerNote:
+          `OneMap use category ('${om}') confirmed as canonical per steward direction: vocabularies differ across sources ` +
+          "('Resorts' vs 'Resort', 'Mariculture' vs 'Aquaculture') and AoM lease data is historical. AoM value remains published.",
+      },
+    });
+    if (c.islandId) touchedIslands.add(c.islandId);
+    useResolved++;
+  }
+
   // ---------------- Steward decisions (2026-06-12) ----------------
   // Atoll disagreements reviewed individually by the registry steward: in all
   // four, the registry's surveyed coordinates fall inside OneMap's atoll, and
@@ -268,6 +360,7 @@ async function main() {
         `${coordResolved} coordinate resolved (≤${COORD_RESOLVE_KM} km), ${coordEscalated} escalated. ` +
         `Census 2022: ${censusVerified} values verified, ${populationResolved} population conflicts resolved. ` +
         `Atoll naming: ${atollResolved} resolved as same-atoll naming-convention differences, ${atollLeft} kept (genuine disagreement). ` +
+        `Status vocabulary: ${statusResolved} resolved. Area: ${areaResolved} resolved. Use category: ${useResolved} resolved. ` +
         `Steward decisions: ${stewardResolved} atoll disagreements resolved in OneMap's favour (coordinate-verified).`,
     },
   });
@@ -275,7 +368,9 @@ async function main() {
   console.log(
     `Done. OneMap — name: ${nameResolved}, coords resolved: ${coordResolved}, escalated: ${coordEscalated}. ` +
       `Census 2022 — population: ${populationResolved}. ` +
-      `Atoll naming — resolved: ${atollResolved}, kept: ${atollLeft}. Steward decisions: ${stewardResolved}. Islands updated: ${touchedIslands.size}.`,
+      `Atoll naming — resolved: ${atollResolved}, kept: ${atollLeft}. ` +
+      `Status: ${statusResolved}. Area: ${areaResolved}. Use category: ${useResolved}. ` +
+      `Steward decisions: ${stewardResolved}. Islands updated: ${touchedIslands.size}.`,
   );
 }
 

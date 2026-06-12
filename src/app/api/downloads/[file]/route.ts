@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import {
   toCsv, islandsCanonicalRows, islandsGeoJson, conflictsRows, sourceRegistryRows,
-  allSourceValuesRows, atollsRows, populationRows,
+  allSourceValuesRows, atollsRows, populationRows, aomDataIssuesRows,
 } from "@/lib/exports";
 
 export const dynamic = "force-dynamic";
@@ -11,6 +11,7 @@ const FILES: Record<string, () => Promise<{ body: string; type: string }>> = {
   "islands.csv": async () => ({ body: toCsv(await islandsCanonicalRows()), type: "text/csv" }),
   "islands-all-source-values.csv": async () => ({ body: toCsv(await allSourceValuesRows()), type: "text/csv" }),
   "conflicts.csv": async () => ({ body: toCsv(await conflictsRows()), type: "text/csv" }),
+  "aom-data-issues.csv": async () => ({ body: toCsv(await aomDataIssuesRows()), type: "text/csv" }),
   "source-registry.csv": async () => ({ body: toCsv(await sourceRegistryRows()), type: "text/csv" }),
   "atolls.csv": async () => ({ body: toCsv(await atollsRows()), type: "text/csv" }),
   "population.csv": async () => ({ body: toCsv(await populationRows()), type: "text/csv" }),
