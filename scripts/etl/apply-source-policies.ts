@@ -22,6 +22,14 @@
  *    - population conflicts where the census provides the canonical value
  *      are resolved in its favour. Disagreeing values stay published.
  *
+ * 3. Atoll naming conventions. OneMap records atolls by code ("S", "ADh"),
+ *    StatsMap/AoM spell them out ("Seenu", "Alifu Dhaalu") — most atoll
+ *    conflicts are the same atoll written two ways. When every source value
+ *    maps to the same atoll via the Atoll registry (code or name), the
+ *    conflict is resolved in OneMap's favour; the UI displays the long name
+ *    with the code in brackets ("Seenu (S)"). Values that map to different
+ *    atolls are genuine assignment disagreements and stay unresolved.
+ *
  * Resolutions only record the review — the disagreement itself remains
  * published with every source's value, per registry principles.
  *
@@ -167,6 +175,49 @@ async function main() {
     populationResolved++;
   }
 
+  // ---------------- Policy 3: Atoll naming conventions ----------------
+  const atolls = await prisma.atoll.findMany();
+  const normAtoll = (s: string) =>
+    s.toLowerCase().replace(/['’]/g, "").replace(/\s+/g, " ").trim().replace(/ atoll$/, "");
+  const codeByAlias = new Map<string, string>();
+  for (const a of atolls) {
+    codeByAlias.set(normAtoll(a.code), a.code);
+    codeByAlias.set(normAtoll(a.name), a.code);
+  }
+  // Capital-region variants used by the sources but absent from the Atoll registry
+  codeByAlias.set("mle", "Male");
+  codeByAlias.set("maale", "Male");
+  codeByAlias.set("maale city", "Male");
+  codeByAlias.set("male city", "Male");
+
+  let atollResolved = 0;
+  let atollLeft = 0;
+  const atollConflicts = await prisma.dataConflict.findMany({
+    where: { status: "unresolved", conflictType: "value-mismatch", fieldName: "atoll" },
+  });
+  for (const c of atollConflicts) {
+    const values: SourceValue[] = JSON.parse(c.sourceValues);
+    const keys = values.map((v) => codeByAlias.get(normAtoll(v.normalizedValue ?? v.rawValue ?? "")) ?? null);
+    const allSame = keys.every((k) => k != null && k === keys[0]);
+    if (!allSame || !values.some((v) => v.source === "onemap")) {
+      atollLeft++;
+      continue;
+    }
+    await prisma.dataConflict.update({
+      where: { id: c.id },
+      data: {
+        status: "resolved",
+        reviewedBy: "policy:onemap-primary",
+        reviewedAt: now,
+        reviewerNote:
+          "All sources refer to the same atoll using different naming conventions (OneMap atoll code vs spelled-out name). " +
+          "OneMap's code confirmed as canonical; the registry displays the long name with the code in brackets.",
+      },
+    });
+    if (c.islandId) touchedIslands.add(c.islandId);
+    atollResolved++;
+  }
+
   // ---------------- Sync + audit ----------------
   for (const islandId of touchedIslands) {
     const unresolved = await prisma.dataConflict.count({ where: { islandId, status: "unresolved" } });
@@ -180,13 +231,15 @@ async function main() {
       detail:
         `OneMap: ${onemapVerified} values verified, ${nameResolved} name conflicts resolved, ` +
         `${coordResolved} coordinate resolved (≤${COORD_RESOLVE_KM} km), ${coordEscalated} escalated. ` +
-        `Census 2022: ${censusVerified} values verified, ${populationResolved} population conflicts resolved.`,
+        `Census 2022: ${censusVerified} values verified, ${populationResolved} population conflicts resolved. ` +
+        `Atoll naming: ${atollResolved} resolved as same-atoll naming-convention differences, ${atollLeft} kept (genuine disagreement).`,
     },
   });
 
   console.log(
     `Done. OneMap — name: ${nameResolved}, coords resolved: ${coordResolved}, escalated: ${coordEscalated}. ` +
-      `Census 2022 — population: ${populationResolved}. Islands updated: ${touchedIslands.size}.`,
+      `Census 2022 — population: ${populationResolved}. ` +
+      `Atoll naming — resolved: ${atollResolved}, kept: ${atollLeft}. Islands updated: ${touchedIslands.size}.`,
   );
 }
 

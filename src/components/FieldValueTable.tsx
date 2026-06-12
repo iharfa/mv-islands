@@ -47,9 +47,12 @@ export function AomDisclaimer() {
 export default function FieldValueTable({
   fields,
   conflictFields,
+  atollNameByCode,
 }: {
   fields: Map<string, FieldValueView[]>;
   conflictFields: Set<string>;
+  /** code → long name; when set, the canonical atoll value renders as "Long name (Code)". */
+  atollNameByCode?: Record<string, string>;
 }) {
   if (!fields.size) return null;
   const hasAom = [...fields.values()].some((vs) => vs.some((v) => v.source.slug === "atolls-of-maldives"));
@@ -59,7 +62,14 @@ export default function FieldValueTable({
       {[...fields.entries()].map(([fieldName, values]) => {
         const canonical = values.find((v) => v.isCanonical) ?? values[0];
         const hasConflict = conflictFields.has(fieldName);
-        const longText = (canonical.normalizedValue ?? canonical.rawValue ?? "").length > 120;
+        let canonicalDisplay = canonical.normalizedValue ?? canonical.rawValue ?? "—";
+        if (fieldName === "atoll" && atollNameByCode) {
+          const longName = Object.entries(atollNameByCode).find(
+            ([code]) => code.toLowerCase() === canonicalDisplay.toLowerCase(),
+          )?.[1];
+          if (longName) canonicalDisplay = `${longName} (${canonicalDisplay})`;
+        }
+        const longText = canonicalDisplay.length > 120;
         return (
           <section key={fieldName} className="card overflow-hidden">
             <div className="px-4 py-3 border-b border-border-subtle flex flex-wrap items-center justify-between gap-2">
@@ -72,7 +82,7 @@ export default function FieldValueTable({
             <div className="px-4 py-3">
               <p className="label-md text-ink-soft mb-1">Canonical value</p>
               <p className={`font-semibold text-ocean ${longText ? "text-sm whitespace-pre-wrap leading-relaxed" : "text-lg"}`}>
-                {canonical.normalizedValue ?? canonical.rawValue ?? "—"}
+                {canonicalDisplay}
               </p>
               {canonical.canonicalReason && (
                 <p className="text-[11px] text-ink-soft mt-1">Why this value: {canonical.canonicalReason}</p>

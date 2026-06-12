@@ -29,7 +29,7 @@ export default async function AtollPage({
 
   const rows: IslandRow[] = islands.map((i) => ({
     id: i.id, slug: i.slug, name: i.name, dhivehiName: i.dhivehiName,
-    atollName: atoll.name, status: i.status, areaSqKm: i.areaSqKm,
+    atollName: `${atoll.name} (${atoll.code})`, status: i.status, areaSqKm: i.areaSqKm,
     population: i.population[0]?.total ?? null,
     overallScore: i.overallScore, unresolvedConflicts: i.unresolvedConflicts,
   }));

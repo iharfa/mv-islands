@@ -46,7 +46,7 @@ export default async function IslandsPage({
     slug: i.slug,
     name: i.name,
     dhivehiName: i.dhivehiName,
-    atollName: i.atoll?.name ?? null,
+    atollName: i.atoll ? `${i.atoll.name} (${i.atoll.code})` : null,
     status: i.status,
     areaSqKm: i.areaSqKm,
     population: popByIsland.get(i.id) ?? null,

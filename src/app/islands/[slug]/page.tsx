@@ -61,6 +61,10 @@ export default async function IslandPage({
   })) as unknown as FieldValueView[];
 
   const conflictFields = new Set(island.conflicts.filter((c) => c.status === "unresolved").map((c) => c.fieldName));
+  // code → long name so the canonical atoll value renders as "Seenu (S)"; MLE is OneMap's code for the capital region
+  const allAtolls = await prisma.atoll.findMany({ select: { code: true, name: true } });
+  const atollNameByCode: Record<string, string> = { MLE: "Male' Region" };
+  for (const a of allAtolls) atollNameByCode[a.code] = a.name;
   const altNames = island.names.filter((n) => n.nameType === "alternative").map((n) => n.name);
   const onemapGeom = island.geometries.find((g) => g.sourceSlug === "onemap" && g.geomType === "polygon");
 
@@ -187,7 +191,7 @@ export default async function IslandPage({
 
       {/* Tab content */}
       {tab === "overview" && (
-        <FieldValueTable conflictFields={conflictFields}
+        <FieldValueTable conflictFields={conflictFields} atollNameByCode={atollNameByCode}
           fields={groupFields(fieldValues, ["name", "dhivehi_name", "atoll", "status", "island_type", "use_category", "sector", "managing_agency", "nearest_inhabited_island", "inhabited_island_distance_km", "nearest_airport", "airport_distance_km", "nearest_resort", "resort_distance_km"])} />
       )}
 
