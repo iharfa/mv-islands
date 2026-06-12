@@ -310,6 +310,41 @@ async function main() {
     useResolved++;
   }
 
+  // ---------------- Policy 7: inhabited vs other-inhabited (Census-2022-backed) ----------------
+  // StatsMap's "OtherInhabited" is its layer name for inhabited islands outside
+  // the capital region — vocabulary, not disagreement. Steward direction:
+  // Census 2022 is the primary evidence of habitation. Resolve as inhabited
+  // when the island has a Census 2022 resident population.
+  let inhabResolved = 0;
+  const inhabConflicts = await prisma.dataConflict.findMany({
+    where: { status: "unresolved", conflictType: "value-mismatch", fieldName: "status" },
+  });
+  for (const c of inhabConflicts) {
+    const values: SourceValue[] = JSON.parse(c.sourceValues);
+    const om = sourceValue(values, "onemap");
+    const sm = sourceValue(values, "statsmap");
+    if (om !== "inhabited" || sm !== "other-inhabited") continue;
+    if (!values.filter((v) => !["onemap", "statsmap"].includes(v.source)).every((v) => (v.normalizedValue ?? v.rawValue) === "inhabited")) continue;
+    if (!c.islandId) continue;
+    const census = await prisma.islandPopulation.findFirst({
+      where: { islandId: c.islandId, sourceSlug: "census-2022", total: { gt: 0 } },
+    });
+    if (!census) continue;
+    await prisma.dataConflict.update({
+      where: { id: c.id },
+      data: {
+        status: "resolved",
+        reviewedBy: "policy:census-2022-primary",
+        reviewedAt: now,
+        reviewerNote:
+          `Census 2022 (primary source for habitation) records ${census.total} residents — island is inhabited. ` +
+          "StatsMap's 'other-inhabited' is its layer name for inhabited islands outside the capital region, not a disagreement.",
+      },
+    });
+    touchedIslands.add(c.islandId);
+    inhabResolved++;
+  }
+
   // ---------------- Steward decisions (2026-06-12) ----------------
   // Atoll disagreements reviewed individually by the registry steward: in all
   // four, the registry's surveyed coordinates fall inside OneMap's atoll, and
@@ -345,6 +380,80 @@ async function main() {
     stewardResolved += res.count;
   }
 
+  // FCODE: StatsMap's LD1999 is its own internal record key for N Holhudhoo —
+  // matched by atoll+name at 97% confidence with census-consistent population.
+  // OneMap's LD0455 is the registry code. Steward decision 2026-06-12.
+  const holhudhoo = await prisma.island.findUnique({ where: { slug: "n-holhudhoo" } });
+  if (holhudhoo) {
+    const res = await prisma.dataConflict.updateMany({
+      where: { islandId: holhudhoo.id, fieldName: "fcode", conflictType: "value-mismatch", status: "unresolved" },
+      data: {
+        status: "resolved",
+        reviewedBy: "admin",
+        reviewedAt: now,
+        reviewerNote:
+          "Steward review 2026-06-12: same island — LD1999 is StatsMap's internal record key for N Holhudhoo " +
+          "(atoll+name match, population consistent with Census 2022). OneMap's LD0455 is the registry code.",
+      },
+    });
+    if (res.count) touchedIslands.add(holhudhoo.id);
+    stewardResolved += res.count;
+  }
+
+  // ---------------- Context notes for open status conflicts ----------------
+  // Steward direction 2026-06-12: keep the remaining status disagreements
+  // unresolved, but attach current ground truth from the Tourism Ministry
+  // registered-facilities ingest (scrape:tourism) so each one can be judged
+  // with context. Notes are refreshed on every run; manual notes are kept.
+  const tourism = await prisma.source.findUnique({ where: { slug: "tourism-ministry" } });
+  let contextNoted = 0;
+  if (tourism) {
+    const openStatus = await prisma.dataConflict.findMany({
+      where: { status: "unresolved", conflictType: "value-mismatch", fieldName: "status" },
+    });
+    for (const c of openStatus) {
+      if (!c.islandId) continue;
+      if (c.reviewerNote && !c.reviewerNote.startsWith("[context")) continue; // manual note — leave alone
+      const resort = await prisma.fieldValue.findFirst({
+        where: { entityId: c.islandId, sourceId: tourism.id, fieldName: "resort_name" },
+      });
+      const state = resort
+        ? await prisma.fieldValue.findFirst({
+            where: { entityId: c.islandId, sourceId: tourism.id, fieldName: "resort_operating_state" },
+          })
+        : null;
+      const values: SourceValue[] = JSON.parse(c.sourceValues);
+      const anyResortClaim = values.some((v) => (v.normalizedValue ?? v.rawValue) === "resort");
+      let note: string | null = null;
+      if (resort) {
+        note = `[context 2026-06-12] Tourism Ministry registered facilities: "${resort.normalizedValue}" — ${state?.normalizedValue ?? "state unknown"}.`;
+      } else if (anyResortClaim) {
+        note = "[context 2026-06-12] No registered resort on this island in the Tourism Ministry facilities export.";
+      }
+      if (note && c.reviewerNote !== note) {
+        await prisma.dataConflict.update({ where: { id: c.id }, data: { reviewerNote: note } });
+        contextNoted++;
+      }
+    }
+
+    // Steward-verified history for HDh Kun'burudhoo (kept unresolved intentionally):
+    const kunburudhoo = await prisma.island.findUnique({ where: { slug: "hdh-kunburudhoo" } });
+    if (kunburudhoo) {
+      const res = await prisma.dataConflict.updateMany({
+        where: { islandId: kunburudhoo.id, fieldName: "status", status: "unresolved" },
+        data: {
+          reviewerNote:
+            "[context 2026-06-12, steward-verified] Population relocated to HDh Nolhivaranfaru in 2011 under the " +
+            "consolidation programme (with Maavaidhoo and Faridhoo); Census 2014 already recorded the island as no longer " +
+            "inhabited and Census 2022 has no record. The island now hosts the regional waste transfer station serving " +
+            "HA/HDh/Sh atolls (built ~2022). AoM 'inhabited' is the pre-relocation archive value; OneMap 'uninhabited' is " +
+            "correct for habitation, though 'industrial' may now fit better.",
+        },
+      });
+      contextNoted += res.count;
+    }
+  }
+
   // ---------------- Sync + audit ----------------
   for (const islandId of touchedIslands) {
     const unresolved = await prisma.dataConflict.count({ where: { islandId, status: "unresolved" } });
@@ -361,6 +470,7 @@ async function main() {
         `Census 2022: ${censusVerified} values verified, ${populationResolved} population conflicts resolved. ` +
         `Atoll naming: ${atollResolved} resolved as same-atoll naming-convention differences, ${atollLeft} kept (genuine disagreement). ` +
         `Status vocabulary: ${statusResolved} resolved. Area: ${areaResolved} resolved. Use category: ${useResolved} resolved. ` +
+        `Inhabited (census-backed): ${inhabResolved} resolved. ` +
         `Steward decisions: ${stewardResolved} atoll disagreements resolved in OneMap's favour (coordinate-verified).`,
     },
   });
@@ -369,7 +479,7 @@ async function main() {
     `Done. OneMap — name: ${nameResolved}, coords resolved: ${coordResolved}, escalated: ${coordEscalated}. ` +
       `Census 2022 — population: ${populationResolved}. ` +
       `Atoll naming — resolved: ${atollResolved}, kept: ${atollLeft}. ` +
-      `Status: ${statusResolved}. Area: ${areaResolved}. Use category: ${useResolved}. ` +
+      `Status: ${statusResolved}. Area: ${areaResolved}. Use category: ${useResolved}. Inhabited: ${inhabResolved}. Context notes: ${contextNoted}. ` +
       `Steward decisions: ${stewardResolved}. Islands updated: ${touchedIslands.size}.`,
   );
 }

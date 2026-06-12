@@ -106,14 +106,18 @@ const SOURCES = [
   },
   {
     slug: "tourism-ministry",
-    name: "Ministry of Tourism resort registry (planned)",
+    name: "Ministry of Tourism registered facilities",
     organization: "Ministry of Tourism, Maldives",
-    url: "https://www.tourism.gov.mv/",
+    url: "https://www.tourism.gov.mv/en/registered/facilities",
     datasetType: "registry",
     accessMethod: "file-download",
-    category: "future",
-    priority: 60,
-    limitations: "Not yet ingested. Placeholder for resort/guesthouse registry.",
+    category: "tourism",
+    priority: 15,
+    license: "Public government registry data; terms not formally published.",
+    limitations:
+      "Registered tourist resorts (CSV export, ingested 2026-06-12): name, island, rooms, beds, operator, owner and operating state. Authoritative for current resort operation; resort entries sometimes span multiple islets, matched best-effort to registry islands. Guesthouses/hotels/vessels not yet ingested.",
+    archivePath: "data/raw/tourism",
+    processingScript: "scripts/scrape/tourism.ts",
   },
 ];
 

@@ -1,0 +1,1054 @@
+{
+  "fetchedAt": "2026-06-12T18:19:09.380Z",
+  "total": 177,
+  "matched": 161,
+  "unmatched": [
+    {
+      "resort": "Angaga Island Resort and Spa",
+      "atoll": "Alifu Dhaalu",
+      "island": "Angaga"
+    },
+    {
+      "resort": "Bandos Maldives",
+      "atoll": "Kaafu",
+      "island": "Bandos"
+    },
+    {
+      "resort": "Centara Mirage Lagoon Maldives & Centara Grand Lagoon Maldives",
+      "atoll": "Kaafu",
+      "island": "4°19’0.85”N73°20’43.59”E"
+    },
+    {
+      "resort": "Embudhu Village",
+      "atoll": "Kaafu",
+      "island": "Embudhu"
+    },
+    {
+      "resort": "Eri Maldives",
+      "atoll": "Kaafu",
+      "island": "Eriyadhu"
+    },
+    {
+      "resort": "Hilton Maldives Amingiri Resort & Spa",
+      "atoll": "Kaafu",
+      "island": "Kohdhipparu Lagoon"
+    },
+    {
+      "resort": "Huvafenfushi Maldives",
+      "atoll": "Kaafu",
+      "island": "Nakatchafushi"
+    },
+    {
+      "resort": "Joy Island",
+      "atoll": "Kaafu",
+      "island": "Island 1 Plot of Lagoon"
+    },
+    {
+      "resort": "Kandima Maldives",
+      "atoll": "Dhaalu",
+      "island": "Kadinma"
+    },
+    {
+      "resort": "Kuda Villingili Resort Maldives",
+      "atoll": "Kaafu",
+      "island": "Kudavillingili"
+    },
+    {
+      "resort": "Kuredu Island Resort",
+      "atoll": "Lhaviyani",
+      "island": "Kuredu"
+    },
+    {
+      "resort": "Sirru Fen Fushi",
+      "atoll": "Shaviyani",
+      "island": "Gaakoshibee"
+    },
+    {
+      "resort": "SO/ Maldives",
+      "atoll": "Kaafu",
+      "island": "4° 7’ 24.562” N, 73° 28’ 52.015” E"
+    },
+    {
+      "resort": "South Palm Resort Maldives",
+      "atoll": "Seenu",
+      "island": "Ismehelahera Kedevaahera"
+    },
+    {
+      "resort": "Taj Coral Reef Resort and Spa",
+      "atoll": "Kaafu",
+      "island": "Hembadhu"
+    },
+    {
+      "resort": "Taj Exotica Resort & Spa Maldives",
+      "atoll": "Kaafu",
+      "island": "Embudhu Finolhu"
+    }
+  ],
+  "matches": [
+    {
+      "resort": "Aanugandu Island Resort",
+      "island_slug": "k-aanugandufinolhu",
+      "score": 0.94,
+      "state": "Operating"
+    },
+    {
+      "resort": "Adaaran Club Rannalhi",
+      "island_slug": "k-rannaalhi",
+      "score": 0.89,
+      "state": "Operating"
+    },
+    {
+      "resort": "Adaaran Prestige Vadoo",
+      "island_slug": "k-vaadhoo",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Adaaran Select Hudhuranfushi",
+      "island_slug": "k-lhohifushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Adaaran Select Meedhupparu",
+      "island_slug": "r-meedhupparu",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Alila Kothaifaru Maldives",
+      "island_slug": "r-kothaifaru",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Alimatha Aquatic Resort",
+      "island_slug": "v-alimathaa",
+      "score": 0.89,
+      "state": "Operating"
+    },
+    {
+      "resort": "Ananea Madivaru Maldives",
+      "island_slug": "aa-etheremadivaru",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Anantara Kihavah Villas",
+      "island_slug": "b-kihavahhuravalhi",
+      "score": 0.94,
+      "state": "Operating"
+    },
+    {
+      "resort": "Anantara Resort and Spa Maldives",
+      "island_slug": "k-dhigufinolhu",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Anantara Veli and Naladhu",
+      "island_slug": "k-veliganduhuraa",
+      "score": 0.93,
+      "state": "Operating"
+    },
+    {
+      "resort": "Angsana Resort & Spa Maldives - Velavaru",
+      "island_slug": "dh-velavaru",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Atmosphere Kanifushi Maldives",
+      "island_slug": "lh-kanifushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Avani + Fares Maldives",
+      "island_slug": "b-fares",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Ayada Maldives",
+      "island_slug": "gdh-maguhdhuvaa",
+      "score": 0.92,
+      "state": "Operating"
+    },
+    {
+      "resort": "Baglioni Resort Maldives",
+      "island_slug": "dh-maagau",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Banyan Tree Maldives Vabbinfaru",
+      "island_slug": "k-vabbinfaru",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Baros Maldives",
+      "island_slug": "k-baros",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Bolifushi Island Resort",
+      "island_slug": "k-bolifushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Brennia Kottefaru",
+      "island_slug": "r-kottefaru",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Canareef Resort Maldives",
+      "island_slug": "s-herethere",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Centara Ras Fushi Resort & Spa",
+      "island_slug": "k-giraavaru",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Cheval Blanc Randheli",
+      "island_slug": "n-randheli",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Cinnamon Dhonveli Maldives",
+      "island_slug": "k-kanuoiyhuraa",
+      "score": 0.92,
+      "state": "Operating"
+    },
+    {
+      "resort": "Cinnamon Hakuraa Huraa Maldives",
+      "island_slug": "m-hakuraahuraa",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Cinnamon Velifushi Maldives",
+      "island_slug": "v-aarah",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Club Med Finolhu Villas",
+      "island_slug": "k-gasfinolhu",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Club Med Kanifinolhu",
+      "island_slug": "k-kanifinolhu",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Coco Bodu Hithi",
+      "island_slug": "k-boduhithi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Coco Palm Dhunikolhu",
+      "island_slug": "b-dhunikolhu",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Cocoa Island",
+      "island_slug": "k-makunufushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Cocogiri Island Resort",
+      "island_slug": "v-vashugiri",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Cocoon Maldives",
+      "island_slug": "lh-ookolhufinolhu",
+      "score": 0.93,
+      "state": "Operating"
+    },
+    {
+      "resort": "Como Maalifushi",
+      "island_slug": "th-maalefushi",
+      "score": 0.9,
+      "state": "Operating"
+    },
+    {
+      "resort": "Conrad Maldives Rangali Island",
+      "island_slug": "adh-rangaleefinolhu",
+      "score": 0.87,
+      "state": "Operating"
+    },
+    {
+      "resort": "Constance Halaveli Resort",
+      "island_slug": "aa-halaveli",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Constance Moofushi Resort",
+      "island_slug": "adh-moofushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Cora Cora Maldives",
+      "island_slug": "r-maamingili",
+      "score": 0.9,
+      "state": "Operating"
+    },
+    {
+      "resort": "Dhawa Ihuru",
+      "island_slug": "k-ihuru",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Dheruhfinolhu by Jawakara Islands Maldives",
+      "island_slug": "lh-dheruffinolhu",
+      "score": 0.92,
+      "state": "Operating"
+    },
+    {
+      "resort": "Dhiggiri Tourist Resort",
+      "island_slug": "v-dhiggiri",
+      "score": 1
+    },
+    {
+      "resort": "Dhigufaru Island Resort",
+      "island_slug": "b-dhigufaruvinagandu",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Diamonds Athuruga Beach & Water Villas",
+      "island_slug": "adh-athurugau",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Diamonds Thudufushi Beach and Water Villas",
+      "island_slug": "adh-thundufushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Dreamland - The Unique Sea & Lake Resort/Spa",
+      "island_slug": "b-hirundhoo",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Drift Theluveliga Retreat",
+      "island_slug": "adh-theluveligaa",
+      "score": 0.92,
+      "state": "Operating"
+    },
+    {
+      "resort": "Dusit Thani Maldives",
+      "island_slug": "b-mudhdhoo",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "dusitD2",
+      "island_slug": "k-feydhoofinolhu",
+      "score": 0.93,
+      "state": "Operating"
+    },
+    {
+      "resort": "Ellaidhoo Maldives By Cinnamon",
+      "island_slug": "aa-ellaidhoo",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Emerald Faarufushi Resort & Spa",
+      "island_slug": "r-faarufushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Emerald Maldives Resort & Spa Fasmendho",
+      "island_slug": "r-fasmendhoo",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Fihaalhohi Maldives",
+      "island_slug": "k-fihaalhohi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Filitheyo Island Resort",
+      "island_slug": "f-filitheyo",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Finolhu Baa Atoll Maldives",
+      "island_slug": "b-kanufushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Four Seasons Private Island Maldives at Voavah",
+      "island_slug": "b-voavah",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Four Seasons Resort Maldives at Kuda Huraa",
+      "island_slug": "k-kudahuraa",
+      "score": 0.9,
+      "state": "Operating"
+    },
+    {
+      "resort": "Four Seasons Resort Maldives at Landaa Giraavaru",
+      "island_slug": "b-landaagiraavaru",
+      "score": 0.94,
+      "state": "Operating"
+    },
+    {
+      "resort": "Furaveri Maldives",
+      "island_slug": "r-furaveri",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Fushifaru Maldives",
+      "island_slug": "lh-fushifaru",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Gangehi Island Resort",
+      "island_slug": "aa-gangehi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Gili Lankanfushi",
+      "island_slug": "k-lankanfushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Grand Park Kodhipparu Maldives",
+      "island_slug": "k-kohdhipparu",
+      "score": 0.91,
+      "state": "Operating"
+    },
+    {
+      "resort": "Hard Rock Hotel Maldives",
+      "island_slug": "k-akasdhoo",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Heritance Aarah",
+      "island_slug": "r-aarah",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Holiday Inn Resort Kandooma Maldives",
+      "island_slug": "k-kandoomaafushi",
+      "score": 0.93,
+      "state": "Operating"
+    },
+    {
+      "resort": "Hondaafushi Island Resort",
+      "island_slug": "hdh-hondaafushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Hurawalhi Island Resort",
+      "island_slug": "lh-huravalhi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Inter Continental Maldives Maamunagau",
+      "island_slug": "r-maamunagau",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "JA Manafaru",
+      "island_slug": "ha-manafaru",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Joali Being Bodufushi",
+      "island_slug": "r-bodufushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Joali Muravandhoo",
+      "island_slug": "r-muravandhoo",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Jumeirah Maldives Olhahali Island",
+      "island_slug": "k-olhuhali",
+      "score": 0.88,
+      "state": "Operating"
+    },
+    {
+      "resort": "JW Marriott Kaafu Atoll Island Resort",
+      "island_slug": "k-hathaafinolhu",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "JW Marriott Maldives Resort & Spa",
+      "island_slug": "sh-vangaru",
+      "score": 0.86,
+      "state": "Operating"
+    },
+    {
+      "resort": "Kagi Maldives Resort and Spa",
+      "island_slug": "k-kagi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Kandolhu Maldives",
+      "island_slug": "aa-kandholhudhoo",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Komandoo Island Resort",
+      "island_slug": "lh-komandoo",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Kudadoo Maldives Private island",
+      "island_slug": "lh-kudadhoo",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Kudafushi Resort & Spa",
+      "island_slug": "r-kudafushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Kuredhivaru Resort and Spa",
+      "island_slug": "n-kuredhivaru",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Kurumba Maldives",
+      "island_slug": "k-vihamanaafushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Le Méridien Maldives Resort and Spa",
+      "island_slug": "lh-thilamaafushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Lily Beach Resort",
+      "island_slug": "adh-huvahendhoo",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Lux* South Ari Atoll, Maldives",
+      "island_slug": "adh-dhihdhoofinolhu",
+      "score": 0.94,
+      "state": "Operating"
+    },
+    {
+      "resort": "Maayafushi Tourist Resort",
+      "island_slug": "aa-maayafushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Mabinhura by Jawakara Islands Maldives",
+      "island_slug": "lh-maabinhuraa",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Machchafushi Island Resort & Spa Maldives, The Centara Collection",
+      "island_slug": "adh-mahchafushi",
+      "score": 0.92,
+      "state": "Operating"
+    },
+    {
+      "resort": "Madifushi Private Island",
+      "island_slug": "m-madifushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Makunudu Island",
+      "island_slug": "k-makunudhoo",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Malahini Kuda Bandos",
+      "island_slug": "k-kudabandos",
+      "score": 0.91,
+      "state": "Operating"
+    },
+    {
+      "resort": "Medhufushi Island Resort",
+      "island_slug": "m-medhufushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Meeru Maldives Resort Island",
+      "island_slug": "k-meerufenfushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Melia Whale Lagoon Maldives",
+      "island_slug": "adh-bodufinolhu",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Meyyafushi Maldives",
+      "island_slug": "lh-meyyafushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Milaidhoo Island Maldives",
+      "island_slug": "b-milaidhoo",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Nala Maldives by Jawakara",
+      "island_slug": "lh-innahuraa",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "NH Collection Maldives Havodda Resort",
+      "island_slug": "gdh-havoddaa",
+      "score": 0.88,
+      "state": "Operating"
+    },
+    {
+      "resort": "NH Collection Maldives Reethi Resort",
+      "island_slug": "b-fonimagoodhoo",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "nH Maldives Kuda Rah Resort",
+      "island_slug": "adh-kudarah",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Nika Island Resort and Spa",
+      "island_slug": "aa-kudafolhudhoo",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Niva Dhigali Maldives",
+      "island_slug": "r-dhigali",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Niva Kuramathi Maldives",
+      "island_slug": "aa-kuramathi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Niva Velassaru Maldives",
+      "island_slug": "k-velassaru",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Niyama Maldives",
+      "island_slug": "dh-olhuveli",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Noku Maldives Vignette Collection",
+      "island_slug": "n-kudafunafaru",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Nooe Maldives Kunavashi",
+      "island_slug": "v-kunaaveshi",
+      "score": 0.9,
+      "state": "Operating"
+    },
+    {
+      "resort": "Nova Maldives",
+      "island_slug": "adh-vakarufalhi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Oaga Art Resort",
+      "island_slug": "k-maaranfushi",
+      "score": 1,
+      "state": "Not Operating"
+    },
+    {
+      "resort": "Oblu By Atmosphere at Helengeli",
+      "island_slug": "k-helengeli",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Oblu Select by Atmosphere at Sangeli",
+      "island_slug": "k-akirifushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "One & Only Reethi Rah, Maldives",
+      "island_slug": "k-medhufinolhu",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Outrigger Maldives Maafushivaru Resort",
+      "island_slug": "adh-maafushivaru",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Ozen By Atmosphere At Maadhoo",
+      "island_slug": "k-maadhoo",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Park Hyatt Maldives Hadahaa",
+      "island_slug": "ga-handahaa",
+      "score": 0.88,
+      "state": "Operating"
+    },
+    {
+      "resort": "Patina Maldives, Fari Islands",
+      "island_slug": "k-farivelihuraa",
+      "score": 0.87,
+      "state": "Operating"
+    },
+    {
+      "resort": "Pullman Maldives Maamutaa Resort",
+      "island_slug": "ga-maamutaa",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Raaya by Atmosphere",
+      "island_slug": "r-kudakurathu",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Radisson Blu Resort Maldives",
+      "island_slug": "adh-huruelhi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Rah Gili Maldives",
+      "island_slug": "k-mahaanaelhihuraa",
+      "score": 0.89,
+      "state": "Operating"
+    },
+    {
+      "resort": "Rahaa Resort",
+      "island_slug": "l-fares",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Reethi Faru Resort",
+      "island_slug": "r-filaidhoo",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Riu Atoll and Riu Palace Maldivas",
+      "island_slug": "dh-maafushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Robinson Maldives",
+      "island_slug": "ga-funamauddaa",
+      "score": 0.91,
+      "state": "Operating"
+    },
+    {
+      "resort": "Robinson Noonu",
+      "island_slug": "n-orivaru",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Royal Island Resort and Spa",
+      "island_slug": "b-horubadhoo",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Saii Lagoon Maldives",
+      "island_slug": "k-ehmafushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Sandies Bathala",
+      "island_slug": "aa-bathalaa",
+      "score": 0.88,
+      "state": "Operating"
+    },
+    {
+      "resort": "Shangri-la Villingili Maldives",
+      "island_slug": "s-vilingili",
+      "score": 0.9,
+      "state": "Operating"
+    },
+    {
+      "resort": "Sheraton Maldives Full Moon Resort & Spa",
+      "island_slug": "k-furanafushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Six Senses Kanuhura",
+      "island_slug": "lh-kanuhuraa",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Six Senses Laamu",
+      "island_slug": "l-olhuveli",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Siyam World Maldives",
+      "island_slug": "n-dhigurah",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Soneva Fushi Resort",
+      "island_slug": "b-kunfunadhoo",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Soneva Jani",
+      "island_slug": "n-medhufaru",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Soneva Secret",
+      "island_slug": "hdh-dhipparufushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Summer Island Maldives",
+      "island_slug": "k-ziyaaraiyfushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Sun Siyam Iru Fushi Maldives",
+      "island_slug": "n-medhafushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Sun Siyam Iru Veli Maldives",
+      "island_slug": "dh-aluvifushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Sun Siyam Olhuveli Maldives",
+      "island_slug": "k-olhuveli",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Sun Siyam Vilu Reef Maldives",
+      "island_slug": "dh-meedhuffushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "The Halcyon Private Isles Maldives Autograph Collection",
+      "island_slug": "ga-meradhoo",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "The Nautilus Maldives",
+      "island_slug": "b-thiladhoo",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "The Residence Maldives",
+      "island_slug": "ga-falhumaafushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "The Residence Maldives At Dhigurah",
+      "island_slug": "ga-dhigurah",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "The Ritz Carlton Maldives Fari Islands",
+      "island_slug": "k-farikanduhuraa",
+      "score": 0.88,
+      "state": "Operating"
+    },
+    {
+      "resort": "The St. Regis Vommuli Resort, Maldives",
+      "island_slug": "dh-vommuli",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "The Standard Huruvalhi Maldives",
+      "island_slug": "r-huruvalhi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "The Westin Maldives Miriandhoo Resort",
+      "island_slug": "b-miriandhoo",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Thulhagiri Island Resort & Spa",
+      "island_slug": "k-thulhaagiri",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "V Villas Maldives at Mirihi-Mgallery Collection",
+      "island_slug": "adh-mirihi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Vakkaru Maldives",
+      "island_slug": "b-vakkaru",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Varu Island Resort",
+      "island_slug": "k-madivaru",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Velaa Private Island Maldives",
+      "island_slug": "n-fushivelavaru",
+      "score": 0.93,
+      "state": "Operating"
+    },
+    {
+      "resort": "Veligandu Maldives Resort Island",
+      "island_slug": "aa-veligandu",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Vilamendhoo Island Resort",
+      "island_slug": "adh-vilamendhoo",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Villa Nautica Paradise Island",
+      "island_slug": "k-lankanfinolhu",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Villa Park Sun Island",
+      "island_slug": "adh-nalaguraidhoo",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "W Maldives",
+      "island_slug": "aa-fesdhoo",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Waldorf Astoria Maldives Ithaafushi",
+      "island_slug": "k-ithaafushi",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "Yash Nature Resort",
+      "island_slug": "dh-dhoores",
+      "score": 1,
+      "state": "Operating"
+    },
+    {
+      "resort": "You & Me Maldives",
+      "island_slug": "r-uthurumaafaru",
+      "score": 1,
+      "state": "Operating"
+    }
+  ]
+}

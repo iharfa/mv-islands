@@ -282,7 +282,7 @@ export default async function IslandPage({
 
       {tab === "tourism" && (
         <FieldValueTable conflictFields={conflictFields}
-          fields={groupFields(fieldValues, ["use_category", "sector", "status_detail", "leased_info", "nearest_resort", "resort_distance_km", "nearest_airport", "airport_distance_km"])} />
+          fields={groupFields(fieldValues, ["resort_name", "resort_operating_state", "resort_rooms", "resort_beds", "resort_operator", "resort_owner", "use_category", "sector", "status_detail", "leased_info", "nearest_resort", "resort_distance_km", "nearest_airport", "airport_distance_km"])} />
       )}
 
       {tab === "history" && (() => {

@@ -11,6 +11,7 @@
     "scrape:onemap": "tsx scripts/scrape/onemap.ts",
     "scrape:mbs": "tsx scripts/scrape/mbs.ts",
     "scrape:statsmap": "tsx scripts/scrape/statsmap.ts",
+    "scrape:tourism": "tsx scripts/scrape/tourism.ts",
     "etl:normalize": "tsx scripts/etl/normalize.ts",
     "etl:match-islands": "tsx scripts/etl/match-islands.ts",
     "etl:detect-conflicts": "tsx scripts/etl/detect-conflicts.ts",
